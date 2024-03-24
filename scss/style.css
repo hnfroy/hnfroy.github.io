@@ -1,0 +1,328 @@
+@import url("https://fonts.googleapis.com/css2?family=Faustina:ital,wght@0,300..800;1,300..800&display=swap");
+:root {
+  --color-darker: #151515;
+  --color-dark: #1d1d1d;
+  --color-golden: #FFD700;
+  --color-darker-grey:#353535;
+  --color-dark-grey:#6A6A6A;
+  --fs-32: 2rem;
+  --fs-28: 1.75rem;
+  --fs-24: 1.5rem;
+  --fs-20: 1.25rem;
+  --fs-18: 1.125rem;
+  --fs-16: 1rem;
+  --fs-14: 0.875rem;
+  --fs-12: 0.75rem;
+  --g-30: 2rem;
+  --g-20: 1.25rem;
+}
+
+.bg-darker {
+  background-color: var(--color-darker);
+}
+
+.bg-golden {
+  background-color: var(--color-golden);
+}
+
+.bg-darker-grey {
+  background-color: var(--color-darker-grey);
+}
+
+.bg-dark-grey {
+  background-color: var(--color-dark-grey);
+}
+
+.fs-54 {
+  font-size: 54px;
+}
+
+.fs-32 {
+  font-size: var(--fs-32);
+}
+
+.fs-28 {
+  font-size: var(--fs-28);
+}
+
+.fs-24 {
+  font-size: var(--fs-24);
+}
+
+.fs-20 {
+  font-size: var(--fs-20);
+}
+
+.fs-18 {
+  font-size: var(--fs-18);
+}
+
+.fs-16 {
+  font-size: var(--fs-16);
+}
+
+.fs-14 {
+  font-size: var(--fs-14);
+}
+
+.fs-12 {
+  font-size: var(--fs-12);
+}
+
+.g-40 {
+  gap: 2.5rem;
+}
+
+.g-30 {
+  gap: 2rem;
+}
+
+.g-24 {
+  gap: 1.5rem;
+}
+
+.g-20 {
+  gap: 1.25rem;
+}
+
+.g-16 {
+  gap: 1rem;
+}
+
+.text-golden {
+  color: var(--color-golden);
+}
+
+.text-second {
+  color: #c5c5c5;
+}
+
+.btn-nav {
+  background-color: var(--color-darker-grey);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-end-end-radius: 1.25rem;
+}
+
+.btn-nav:hover {
+  background-color: var(--color-golden);
+  color: var(--color-darker);
+}
+
+* {
+  font-family: "Faustina", serif;
+}
+
+body {
+  background-color: var(--color-darker) !important;
+}
+
+div#navbar {
+  padding: 1.5rem 0rem;
+}
+div#navbar ul li a {
+  color: var(--color-dark-grey);
+}
+div#navbar ul li a.active {
+  color: var(--color-golden);
+}
+div#navbar ul li a:hover {
+  color: var(--color-golden);
+}
+
+@media only screen and (max-width: 600px) {
+  div#navbar {
+    padding: 1rem 1rem;
+  }
+  div#navbar a img {
+    width: 3rem;
+  }
+  section#aso .card-aso {
+    height: -moz-fit-content !important;
+    height: fit-content !important;
+    border: 0.2px #373737 solid;
+    transition: transform 0.3s;
+  }
+  section#aso .card-aso:hover {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+  }
+  section#aso #profile-other svg {
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    -ms-border-radius: 100px;
+    -o-border-radius: 100px;
+  }
+  section#aso #profile-other svg .st0 {
+    fill: #141414;
+  }
+  section#aso #profile-other svg .st1 {
+    fill: #ffffff;
+  }
+  section#aso #profile-other svg .ld0 {
+    fill: #141414;
+  }
+  section#aso #profile-other svg .ld1 {
+    fill: #ffffff;
+  }
+  section#aso #profile-other:hover svg {
+    cursor: pointer;
+  }
+  section#aso #profile-other:hover svg .st0 {
+    fill: #1769ff;
+  }
+  section#aso #profile-other:hover svg .st1 {
+    fill: #ffffff;
+  }
+  section#aso #profile-other:hover svg .ld0 {
+    fill: #0072b1;
+  }
+  section#aso #profile-other:hover svg .ld1 {
+    fill: #ffffff;
+  }
+  section#porto .list-card-porto {
+    width: 330px !important;
+  }
+  section#porto .list-card-porto .card-porto {
+    width: 417px;
+    height: 250px;
+    transition: transform 0.3s;
+  }
+  section#porto .list-card-porto .card-porto .block-img {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  section#porto .list-card-porto .card-porto .block-img p {
+    opacity: 100;
+  }
+  section#porto .list-card-porto .card-porto:hover {
+    z-index: 99;
+    width: 417px;
+    height: 250px;
+    transform: scale(1.2);
+  }
+  section#porto .list-card-porto .card-porto:hover .block-img {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0);
+  }
+  section#porto .list-card-porto .card-porto:hover .block-img p {
+    opacity: 0;
+  }
+}
+section {
+  padding: 60px 0px;
+}
+section#main-home .img-main {
+  width: 100px;
+  height: 100px;
+  overflow: auto;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  transition: transform 0.3s;
+  -webkit-transition: transform 0.3s;
+  -moz-transition: transform 0.3s;
+  -ms-transition: transform 0.3s;
+  -o-transition: transform 0.3s;
+}
+section#main-home .img-main:hover {
+  cursor: pointer;
+  transform: scale(1.5);
+  -webkit-transform: scale(1.5);
+  -moz-transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  -o-transform: scale(1.5);
+}
+section#aso .card-aso {
+  height: 250px;
+  border: 0.2px #373737 solid;
+  transition: transform 0.3s;
+}
+section#aso .card-aso:hover {
+  transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+}
+section#aso #profile-other svg {
+  border-radius: 100px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  -ms-border-radius: 100px;
+  -o-border-radius: 100px;
+}
+section#aso #profile-other svg .st0 {
+  fill: #141414;
+}
+section#aso #profile-other svg .st1 {
+  fill: #ffffff;
+}
+section#aso #profile-other svg .ld0 {
+  fill: #141414;
+}
+section#aso #profile-other svg .ld1 {
+  fill: #ffffff;
+}
+section#aso #profile-other:hover svg {
+  cursor: pointer;
+}
+section#aso #profile-other:hover svg .st0 {
+  fill: #1769ff;
+}
+section#aso #profile-other:hover svg .st1 {
+  fill: #ffffff;
+}
+section#aso #profile-other:hover svg .ld0 {
+  fill: #0072b1;
+}
+section#aso #profile-other:hover svg .ld1 {
+  fill: #ffffff;
+}
+section#porto .list-card-porto {
+  width: 1300px;
+}
+section#porto .list-card-porto .card-porto {
+  width: 417px;
+  height: 250px;
+  transition: transform 0.3s;
+}
+section#porto .list-card-porto .card-porto .block-img {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+section#porto .list-card-porto .card-porto .block-img p {
+  opacity: 100;
+}
+section#porto .list-card-porto .card-porto:hover {
+  z-index: 99;
+  width: 417px;
+  height: 250px;
+  transform: scale(1.2);
+}
+section#porto .list-card-porto .card-porto:hover .block-img {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0);
+}
+section#porto .list-card-porto .card-porto:hover .block-img p {
+  opacity: 0;
+}
+
+footer {
+  padding: 60px 0px;
+}/*# sourceMappingURL=style.css.map */
