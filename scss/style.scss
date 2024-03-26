@@ -340,6 +340,14 @@ section {
 
           p {
             opacity: 100;
+
+            &.absolute-text {
+              position: absolute;
+              right: 10px;
+              bottom: 20px;
+              color: #b5b5b5;
+              transform: rotate(-35deg);
+            }
           }
         }
       }

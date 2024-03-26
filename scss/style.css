@@ -307,6 +307,13 @@ section#porto .list-card-porto .card-porto .block-img {
 section#porto .list-card-porto .card-porto .block-img p {
   opacity: 100;
 }
+section#porto .list-card-porto .card-porto .block-img p.absolute-text {
+  position: absolute;
+  right: 10px;
+  bottom: 20px;
+  color: #b5b5b5;
+  transform: rotate(-35deg);
+}
 section#porto .list-card-porto .card-porto:hover {
   z-index: 99;
   width: 417px;
