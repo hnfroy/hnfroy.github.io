@@ -20,6 +20,7 @@ h1,h2,h3,h4 {
 nav {
   a {
     &.nav-link {
+      background-color: white;
       font-family: "Bebas Neue", serif;
       padding: 6px 32px!important;
       border: 1px solid black;
@@ -32,6 +33,15 @@ nav {
     &.nav-link:hover {
       background-color: var(--color-accent);
     }
+
+    &.nav-resume {
+      background-color: #E8F438;
+      color: black;
+    }
+    &.nav-resume:hover {
+      background-color: black;
+      color: white;
+    }
   }
 }
 
@@ -42,9 +52,9 @@ $font-sizes: (12, 14, 16, 18, 20, 22, 24, 32, 48, 64, 72, 80, 96);
   }
 }
 
-section {
-  padding-top: 60px;
-  padding-bottom: 60px;
+section, footer {
+  padding-top: 80px;
+  padding-bottom: 80px;
 
   div#accent-hero {
     h3::before {
