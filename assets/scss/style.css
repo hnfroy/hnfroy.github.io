@@ -175,4 +175,10 @@ section .card-project::before, footer .card-project::before {
 .w-fit-content {
   width: -moz-fit-content;
   width: fit-content;
+}
+
+@media only screen and (max-width: 768px) {
+  .card-skills {
+    width: 320px !important;
+  }
 }/*# sourceMappingURL=style.css.map */
