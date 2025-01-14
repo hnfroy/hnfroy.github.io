@@ -12,9 +12,10 @@
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/scss/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <!-- JS -->
   <script src="assets/js/custom.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="assets/js/bootstrap.min.js"></script>
   <!-- Open Graph Metadata -->
   <meta property="og:title" content="My Portfolio - Hanif Royyan" />
@@ -67,34 +68,35 @@
   <section id="about">
     <div class="container">
       <div class="row gx-5 gy-3 gy-md-0">
-        <div class="col-12 col-md-3">
+        <div class="col-12 col-md-3 animate-left">
           <div class="img-about position-relative bg-yellow">
             <img src="assets/img/png/me.png" alt="" class="w-100 position-absolute bottom-0">
           </div>
         </div>
-        <div class="col-12 col-md-9">
+        <div class="col-12 col-md-9 animate-right">
           <div id="accent-hero" class="position-relative w-fit-content">
-            <h3 class="fs-48 animate__animated animate__fadeInUp">Hi, i'm Hanif</h3>
+            <h3 class="fs-48">Hi, i'm Hanif</h3>
           </div>
           <h2 class="fs-48">Mid Level UI/UX Designer and <br> FrontEnd Developer from Indonesia.</h2>
-          <p class="fs-18 mb-0">I am a passionate UI/UX Designer with a keen interest in exploring the connection between design and technology. With experience across various projects, including mobile applications, web platforms, and responsive web applications, I specialize in solving complex design challenges using design thinking and iterative processes. From wireframes and prototypes to high-fidelity mockups, I deliver user-centric solutions.
+          <p class="fs-18 mb-0">
+            I am a passionate UI/UX Designer with a keen interest in exploring the connection between design and technology. With experience across various projects, including mobile applications, web platforms, and responsive web applications, I specialize in solving complex design challenges using design thinking and iterative processes. From wireframes and prototypes to high-fidelity mockups, I deliver user-centric solutions.
             <br><br>
             I am diligent, persistent, honest, and disciplined, with the ability to work both independently and collaboratively. Proficient in HTML, CSS, JavaScript, React, and Vue as well as tools like Figma and Adobe Photoshop, I stay updated with the latest design trends and technologies to continuously refine my craft.
           </p>
         </div>
       </div>
     </div>
-  </section>
+  </section> 
 
   <section id="skills">
     <div class="container">
       <div class="row gx-5 gy-3 gy-md-0">
-        <div class="col-12 col-md-2">
+        <div class="col-12 col-md-2 animate-left">
           <h2 class="fs-64 mb-0 animate__animated animate__backInLeft animate__slow">
             MY<br>SKILLS
           </h2>
         </div>
-        <div class="col-12 col-md-10">
+        <div class="col-12 col-md-10 animate-right">
           <div class="overflow-auto ps-3 pb-3">
             <div class="w-100 d-flex align-items-start justify-content-start gap-5">
               <div class="w-100 position-relative">
@@ -197,16 +199,16 @@
   <section id="projects">
     <div class="container">
       <div class="row gx-5 gy-3 gy-md-0">
-        <div class="col-12 col-md-2">
-          <h2 class="fs-64 mb-0 animate__animated animate__backInLeft animate__slow">
+        <div class="col-12 col-md-2 animate-left">
+          <h2 class="fs-64 mb-0">
             MY<br>PROJECTS
           </h2>
         </div>
-        <div class="col-12 col-md-10">
+        <div class="col-12 col-md-10 animate-right">
           <div class="overflow-auto ps-3 pb-3">
             <div class="row row-cols-1 row-cols-md-3 w-100 align-items-start justify-content-start gx-5 gy-5">
               <div class="col">
-                <div class="w-100 position-relative">
+                <div class="w-100 position-relative animate-skill">
                   <div class="card-project">
                     <img src="assets/img/mpkreasi.png" alt="" class="w-100 h-100 object-fit-cover">
                     <div class="position-absolute bottom-0 start-50 translate-middle-x bg-yellow mb-4 px-3 rounded-pill">
@@ -342,6 +344,31 @@
     </div>
   </section>
 
+  <section id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-2">
+          <h2 class="fs-64 mb-0">
+            CONTACT<br>ME
+          </h2>
+        </div>
+        <div class="col-12 col-md-10">
+          <div class="w-100 position-relative">
+            <div class="card-contact d-flex flex-column gap-3">
+              <div>
+                <i class="bi bi-envelope fs-1"></i>
+                <h3 class="fs-48 mb-0">GET IN TOUCH</h3>
+                  <p class="fs-24 mb-0">Whether you have a question, want to collaborate, or just say hi, my inbox is always open! 
+                  <br>I'll try my best to get back to you as soon as possible.</p>
+              </div>
+              <a class="w-fit-content btn btn-dark px-4 rounded-pill" href="mailto:hnfroy@gmail.com"><h3 class="fs-24 mb-0">SEND MAIL</h3></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer>
     <div class="container">
       <div class="d-flex flex-column align-items-center gap-4">
@@ -353,5 +380,56 @@
       </div>
     </div>
   </footer>
+  <script src="assets/js/custom.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script>
+    // Inisialisasi ScrollTrigger dan animasi
+    gsap.registerPlugin(ScrollTrigger);
+  
+    // Animasi untuk setiap section
+    gsap.utils.toArray('section').forEach((section, index) => {
+      gsap.from(section, {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 70%",
+          toggleActions: "play none none reverse",
+        },
+      });
+    });
+  </script>  
+  <script>
+    // Inisialisasi ScrollTrigger
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Animasi masuk dari kiri untuk col pertama
+    gsap.from('.animate-left', {
+      x: -100, // Gerakan dari kiri
+      opacity: 0,
+      duration: 1,
+      ease: "elastic.out",
+      scrollTrigger: {
+        trigger: '#about',
+        start: "top 80%", // Mulai saat 80% dari viewport
+      },
+    });
+
+    // Animasi masuk dari kanan untuk col kedua (row ke-2)
+    gsap.from('.animate-right', {
+      x: 100, // Gerakan dari kanan
+      opacity: 0,
+      duration: 1,
+      ease: "elastic.out",
+      scrollTrigger: {
+        trigger: '#about',
+        start: "top 40%", // Mulai saat 80% dari viewport
+      },
+      stagger: 0.2, // Memberi jeda antar elemen dalam col kedua
+    });
+  </script>
 </body>
 </html>
