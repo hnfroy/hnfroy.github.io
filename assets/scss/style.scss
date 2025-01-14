@@ -106,6 +106,13 @@ section, footer {
       padding: 6px 8px;
     }
   }
+  .card-skills:hover {
+    background-color: #f4db38;
+  }
+  .card-skills:hover::before {
+    position: absolute;
+    z-index: -2;
+  }
   .card-skills::before {
     content: "";
     position: absolute;

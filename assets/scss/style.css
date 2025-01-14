@@ -141,6 +141,13 @@ section .card-skills .selected-skill, footer .card-skills .selected-skill {
   border: 2px solid black;
   padding: 6px 8px;
 }
+section .card-skills:hover, footer .card-skills:hover {
+  background-color: #f4db38;
+}
+section .card-skills:hover::before, footer .card-skills:hover::before {
+  position: absolute;
+  z-index: -2;
+}
 section .card-skills::before, footer .card-skills::before {
   content: "";
   position: absolute;
@@ -174,7 +181,7 @@ section .card-project::before, footer .card-project::before {
 section .card-contact, footer .card-contact {
   background-color: var(--color-accent);
   width: 100%;
-  height: fit-content;
+  height: 430px;
   padding: 20px;
   border: 5px solid black;
   border-radius: 24px;
