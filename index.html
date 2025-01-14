@@ -25,16 +25,16 @@
   <meta property="og:type" content="website" />
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg border-2 border-black border-bottom" data-bs-theme="light">
+  <nav class="sticky-top navbar navbar-expand-lg border-2 border-black border-bottom bg-white" data-bs-theme="light">
     <div class="container">
-      <a href="">
+      <a href="#hero">
         <img src="assets/img/svg/logo-h.svg" alt="">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="pt-3 pt-md-0 collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav gap-2">
+        <ul class="navbar-nav align-items-center gap-2">
           <li class="nav-item">
             <a class="nav-link fs-18 text-black" href="#about">ABOUT</a>
           </li>
@@ -44,9 +44,21 @@
           <li class="nav-item">
             <a class="nav-link fs-18 text-black" href="#projects">PROJECTS</a>
           </li>
-
+          <li class="nav-item">
+            <a class="nav-link fs-18 text-black" href="#projects">PROJECTS</a>
+          </li>
           <li class="ms-0 ms-md-3 nav-item position-relative">
             <a class="nav-link nav-resume fs-18" href="#" onclick="openPdf()">MY RESUME</a>
+          </li>
+          <li class="nav-item">
+            <a class="" href="https://linkedin.com/in/hanif-royyan/">
+              <i class="bi bi-linkedin text-black fs-5"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="" href="https://instagram.com/hanifroy_">
+              <i class="bi bi-instagram text-black fs-5"></i>
+            </a>
           </li>
         </ul>
       </div>
@@ -56,11 +68,11 @@
   <section id="hero" class="d-flex align-items-center justify-content-center" style="height: 90vh;">
     <div class="container w-fit-content">
       <div class="d-flex flex-column align-items-start">
-        <div id="accent-hero" class="position-relative animate__animated animate__bounceInDown animate__delay-2s">
+        <div id="accent-hero" class="position-relative animate__animated animate__bounceInDown animate__delay-1s">
           <h3 class="fs-32 mb-0">UI/UX Designer</h3>
         </div>
-        <h1 class="fs-96 mb-0 animate__animated animate__backInLeft animate__slow">Muhammad Hanif</h1>
-        <h1 class="fs-96 mb-0 animate__animated animate__backInRight animate__slow">Royyan Ramdhani</h1>
+        <h1 class="fs-96 mb-0 animate__animated animate__backInLeft">Muhammad Hanif</h1>
+        <h1 class="fs-96 mb-0 animate__animated animate__backInRight">Royyan Ramdhani</h1>
       </div>
     </div>
   </section>
@@ -91,12 +103,12 @@
   <section id="skills">
     <div class="container">
       <div class="row gx-5 gy-3 gy-md-0">
-        <div class="col-12 col-md-2 animate-left">
-          <h2 class="fs-64 mb-0 animate__animated animate__backInLeft animate__slow">
+        <div class="col-12 col-md-2">
+          <h2 class="fs-64 mb-0">
             MY<br>SKILLS
           </h2>
         </div>
-        <div class="col-12 col-md-10 animate-right">
+        <div class="col-12 col-md-10">
           <div class="overflow-auto ps-3 pb-3">
             <div class="w-100 d-flex align-items-start justify-content-start gap-5">
               <div class="w-100 position-relative">
@@ -199,12 +211,12 @@
   <section id="projects">
     <div class="container">
       <div class="row gx-5 gy-3 gy-md-0">
-        <div class="col-12 col-md-2 animate-left">
+        <div class="col-12 col-md-2">
           <h2 class="fs-64 mb-0">
             MY<br>PROJECTS
           </h2>
         </div>
-        <div class="col-12 col-md-10 animate-right">
+        <div class="col-12 col-md-10">
           <div class="overflow-auto ps-3 pb-3">
             <div class="row row-cols-1 row-cols-md-3 w-100 align-items-start justify-content-start gx-5 gy-5">
               <div class="col">
@@ -410,11 +422,11 @@
     gsap.from('.animate-left', {
       x: -100, // Gerakan dari kiri
       opacity: 0,
-      duration: 1,
+      duration: 1.25,
       ease: "elastic.out",
       scrollTrigger: {
         trigger: '#about',
-        start: "top 80%", // Mulai saat 80% dari viewport
+        start: "top 70%", // Mulai saat 80% dari viewport
       },
     });
 
@@ -422,7 +434,7 @@
     gsap.from('.animate-right', {
       x: 100, // Gerakan dari kanan
       opacity: 0,
-      duration: 1,
+      duration: 1.25,
       ease: "elastic.out",
       scrollTrigger: {
         trigger: '#about',
