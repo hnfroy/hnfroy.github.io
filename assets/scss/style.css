@@ -95,6 +95,10 @@ section, footer {
   padding-top: 80px;
   padding-bottom: 80px;
 }
+section .typewrite span, footer .typewrite span {
+  font-family: "Bebas Neue", serif;
+  font-size: 96px;
+}
 section div#accent-hero h3::before, footer div#accent-hero h3::before {
   content: "";
   position: absolute;
