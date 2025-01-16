@@ -167,6 +167,10 @@ section .card-project, footer .card-project {
   border: 5px solid black;
   border-radius: 24px;
 }
+section .card-project:hover #name-card, footer .card-project:hover #name-card {
+  background-color: black;
+  color: var(--color-accent);
+}
 section .card-project::before, footer .card-project::before {
   content: "";
   position: absolute;
@@ -181,7 +185,8 @@ section .card-project::before, footer .card-project::before {
 section .card-contact, footer .card-contact {
   background-color: var(--color-accent);
   width: 100%;
-  height: 430px;
+  height: -moz-fit-content;
+  height: fit-content;
   padding: 20px;
   border: 5px solid black;
   border-radius: 24px;
