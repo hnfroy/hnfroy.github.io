@@ -99,6 +99,9 @@ section .typewrite span, footer .typewrite span {
   font-family: "Bebas Neue", serif;
   font-size: 96px;
 }
+section div#hero-text, footer div#hero-text {
+  width: 555px;
+}
 section div#accent-hero h3::before, footer div#accent-hero h3::before {
   content: "";
   position: absolute;
@@ -221,5 +224,8 @@ section .card-contact::before, footer .card-contact::before {
 @media only screen and (max-width: 768px) {
   .card-skills {
     width: 320px !important;
+  }
+  div#hero-text {
+    width: 100%;
   }
 }/*# sourceMappingURL=style.css.map */
