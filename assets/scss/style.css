@@ -146,7 +146,12 @@ section .card-skills .selected-skill, footer .card-skills .selected-skill {
   width: -moz-fit-content;
   width: fit-content;
   border: 2px solid black;
+  border-radius: 8px;
   padding: 6px 8px;
+}
+section .card-skills .selected-skill:hover, footer .card-skills .selected-skill:hover {
+  background-color: white;
+  cursor: default;
 }
 section .card-skills:hover, footer .card-skills:hover {
   background-color: #f4db38;
@@ -202,6 +207,7 @@ section .card-contact .selected-skill, footer .card-contact .selected-skill {
   width: -moz-fit-content;
   width: fit-content;
   border: 2px solid black;
+  border-radius: 4px;
   padding: 6px 8px;
 }
 section .card-contact::before, footer .card-contact::before {

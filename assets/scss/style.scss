@@ -113,7 +113,12 @@ section, footer {
     .selected-skill {
       width: fit-content;
       border: 2px solid black;
+      border-radius: 8px;
       padding: 6px 8px;
+    }
+    .selected-skill:hover {
+      background-color: white;
+      cursor: default;
     }
   }
   .card-skills:hover {
@@ -170,6 +175,7 @@ section, footer {
     .selected-skill {
       width: fit-content;
       border: 2px solid black;
+      border-radius: 4px;
       padding: 6px 8px;
     }
   }
