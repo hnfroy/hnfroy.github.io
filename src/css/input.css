@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+.bg-yellow-dent {
+  background-color: #FFD905;
+}
+.bg-neonpink {
+  background-color: #FF71CE;
+}
+.bg-mint {
+  background-color: #05FFA1;
+}
+.bg-light {
+  background-color: #F9F6FF;
+}
+/* .bg-vaporwave {
+  background: linear-gradient(180deg,rgba(185, 103, 255, 1) 0%, rgba(145, 62, 153, 1) 100%);
+} */
+.text-dark {
+  color: #050014;
+}
+
+.font-pixel {
+  font-family: "Press Start 2P", system-ui;
+}
+
+.block-logo {
+  @apply px-4 py-3 border-y-3 border-r-3 rounded-r-xl;
+}
+
+body {
+  background: linear-gradient(180deg,rgba(185, 103, 255, 1) 0%, rgba(145, 62, 153, 1) 100%);
+}
