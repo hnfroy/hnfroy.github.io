@@ -1,49 +1,72 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { Menu, X } from "lucide-react"; // icon menu & close
+import { Menu, X } from "lucide-react";
 
 const links = [
-  { name: "Me", path: "/" },
-  { name: "Skillsets", path: "/skills" },
-  { name: "Works", path: "/works" },
-  { name: "Contact", path: "/contact" },
+  { name: "Me", path: "#me" },
+  { name: "Skillsets", path: "#skillsets" },
+  { name: "Works", path: "#works" },
+  { name: "Contact", path: "#contact" },
   { name: "Check CV", path: "/cv" },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // Deteksi scroll untuk blur effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20); // kalau scroll > 20px
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 pt-4">
+    <nav
+      className={`fixed top-0 left-0 w-full z-50 pt-4 transition backdrop-blur-md ${
+        scrolled ? "bg-white/05" : "bg-transparent"
+      }`}
+    >
       <div className="mx-auto flex items-center justify-between">
+        {/* Logo */}
         <div className="flex items-center block-logo bg-yellow-dent">
           <img
-            src="assets\media\img\logoH.png"
+            src="assets/media/img/logoH.png"
             alt="Logo"
-            className="h-14 w-auto"
+            className="h-8 md:h-14 w-auto"
           />
         </div>
 
-        <div className="mr-12 hidden md:flex">
-          {links.map((link) => (
-            <NavLink
-              key={link.name}
-              to={link.path}
-              className={({ isActive }) => {
-                if (link.name === "Check CV") {
-                  return `px-5 py-2 bg-mint border-3 rounded-xl -ml-[8px] font-pixel text-sm transition
-                    ${isActive ? "text-dark" : "hover:bg-lime-500"}`;
-                }
+        {/* Desktop Menu */}
+        <div className="mr-8 md:mr-12 hidden md:flex">
+          {links.map((link) => {
+            if (link.path.startsWith("#")) {
+              return (
+                <a
+                  key={link.name}
+                  href={link.path}
+                  className="pl-5 pr-6 py-2 bg-white border-y-3 border-l-3 rounded-l-xl -ml-[10px] font-pixel text-sm transition hover:bg-pink-400"
+                >
+                  {link.name}
+                </a>
+              );
+            }
 
-                return `pl-5 pr-6 py-2 bg-white border-y-3 border-l-3 rounded-l-xl -ml-[10px] font-pixel text-sm transition 
-                  ${isActive ? "bg-neonpink text-dark" : "hover:bg-pink-400"}`;
-              }}
-            >
-              {link.name}
-            </NavLink>
-          ))}
+            return (
+              <NavLink
+                key={link.name}
+                to={link.path}
+                className="px-5 py-2 bg-mint border-3 rounded-xl -ml-[8px] font-pixel text-sm transition hover:bg-lime-500"
+              >
+                {link.name}
+              </NavLink>
+            );
+          })}
         </div>
 
+        {/* Mobile Button */}
         <button
           className="mr-6 md:hidden bg-white p-2 rounded-xl border-3 text-black"
           onClick={() => setIsOpen(!isOpen)}
@@ -52,25 +75,36 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Menu Mobile Dropdown */}
+      {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden flex flex-col items-center gap-4 bg-black/90 py-6">
-          {links.map((link) => (
-            <NavLink
-              key={link.name}
-              to={link.path}
-              onClick={() => setIsOpen(false)}
-              className={({ isActive }) =>
-                `font-heading text-base uppercase transition ${
-                  isActive
-                    ? "text-pink-400"
-                    : "text-white hover:text-cyan-400"
-                }`
+        <div className="md:hidden p-2">
+          <div className="flex flex-col items-center gap-4 bg-white py-6 border-3 rounded-xl">
+            {links.map((link) => {
+              if (link.path.startsWith("#")) {
+                return (
+                  <a
+                    key={link.name}
+                    href={link.path}
+                    onClick={() => setIsOpen(false)}
+                    className="font-pixel transition text-black hover:text-pink"
+                  >
+                    {link.name}
+                  </a>
+                );
               }
-            >
-              {link.name}
-            </NavLink>
-          ))}
+
+              return (
+                <NavLink
+                  key={link.name}
+                  to={link.path}
+                  onClick={() => setIsOpen(false)}
+                  className="font-pixel transition text-black hover:text-pink"
+                >
+                  {link.name}
+                </NavLink>
+              );
+            })}
+          </div>
         </div>
       )}
     </nav>

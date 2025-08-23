@@ -1,1 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+    font-family: "Lexend", sans-serif;
+}
+
+.heading {
+    -webkit-text-stroke: 1px black;
+}
+
+.pixel-border {
+  text-shadow: 
+    2px 2px 0 #000,
+   -2px 2px 0 #000,
+    2px -2px 0 #000,
+   -2px -2px 0 #000;
+}
