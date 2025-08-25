@@ -7,6 +7,8 @@ html {
 
 * {
     font-family: "Lexend", sans-serif;
+
+    cursor: none;
 }
 
 .heading {
@@ -19,4 +21,12 @@ html {
    -2px 2px 0 #000,
     2px -2px 0 #000,
    -2px -2px 0 #000;
+}
+
+.text-bordered {
+  -webkit-text-stroke: 4px black;
+}
+
+.subtext-bordered {
+  -webkit-text-stroke: 2px black;
 }

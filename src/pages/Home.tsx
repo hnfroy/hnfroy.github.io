@@ -97,9 +97,60 @@ export default function Home() {
   const logoRefs = useRef<HTMLImageElement[]>([]);
   const [selected, setSelected] = useState<Portfolio | null>(null);
   const [currentImage, setCurrentImage] = useState(0);
-  const modalRef = useRef<HTMLDivElement>(null);
 
+  const modalRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const bgRef = useRef<HTMLImageElement>(null);
+  const textRef = useRef<HTMLDivElement>(null); 
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  // Animasi parallax dengan GSAP
   useEffect(() => {
+    const container = containerRef.current;
+    const content = contentRef.current;
+    const bg = bgRef.current;
+
+    if (!container || !content || !bg) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const { innerWidth, innerHeight } = window;
+      const x = (e.clientX / innerWidth - 0.5) * 2; // range -1 sampai 1
+      const y = (e.clientY / innerHeight - 0.5) * 2;
+
+      // Background GIF → depth jauh (lambat, subtle)
+      gsap.to(bg, {
+        x: x * 40,
+        y: y * 40,
+        scale: 1.05,
+        duration: 1.2,
+        ease: "power3.out",
+      });
+
+      // Content text → depth dekat (cepat, lebih responsif)
+      gsap.to(content, {
+        x: x * 100,
+        y: y * 100,
+        rotateY: x * 10,
+        rotateX: -y * 10,
+        transformPerspective: 1200,
+        scale: 1.05,
+        duration: 1,
+        ease: "power3.out",
+      });
+    };
+
+    // Disable di layar kecil biar gak berat
+    if (window.innerWidth > 768) {
+      container.addEventListener("mousemove", handleMouseMove);
+    }
+
+    return () => {
+      container.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
+
+  // 🔹 Animasi skill tags
+  const animateTags = () => {
     tagRefs.current.forEach((skillTags) => {
       skillTags.forEach((tag) => {
         if (tag) {
@@ -120,20 +171,25 @@ export default function Home() {
         }
       });
     });
+  };
+
+  // 🔹 Animasi logo floating
+  const animateLogos = () => {
     logoRefs.current.forEach((el: gsap.TweenTarget, i: number) => {
       if (el) {
         gsap.to(el, {
-          y: 15, // naik turun
-          duration: 2 + i * 0.2, // durasi beda-beda biar lebih natural
+          y: 15,
+          duration: 2 + i * 0.2,
           repeat: -1,
           yoyo: true,
           ease: "power1.inOut",
         });
       }
     });
-  }, []);
+  };
 
-  useEffect(() => {
+  // 🔹 Animasi modal ketika muncul
+  const animateModal = () => {
     if (selected && modalRef.current) {
       gsap.fromTo(
         modalRef.current,
@@ -141,8 +197,13 @@ export default function Home() {
         { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: "power3.out" }
       );
     }
+  };
+
+  useEffect(() => {
+    animateModal();
   }, [selected]);
 
+  // Navigasi modal image
   const handleNext = () => {
     if (!selected) return;
     setCurrentImage((prev) => (prev + 1) % selected.images.length);
@@ -157,12 +218,34 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center">
-      <section className="max-w-6xl w-full flex items-center justify-center pt-42 pb-18">
-        <h1 className="font-heading text-2xl text-pink-400">Hello, I’m Hanif 🚀</h1>
+      <section
+        ref={containerRef}
+        className="relative w-full h-screen flex items-center justify-center overflow-hidden"
+      >
+        {/* Background */}
+        <img
+          ref={bgRef}
+          src="assets/media/img/gif/vaporwave.gif"
+          alt="vaporwave"
+          className="absolute w-full h-full object-cover"
+        />
+
+        {/* Content Text */}
+        <div
+          ref={contentRef}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        >
+          <small className="font-bold text-[22px] md:text-[32px] pixel-border text-electricblue block">
+            UI/UX Designer
+          </small>
+          <h1 className="font-pixel text-[48px] md:text-[72px] text-white text-bordered ms-0 md:ms-12">
+            HANIF ROYYAN
+          </h1>
+        </div>
       </section>
 
       <section id="me" className="max-w-6xl w-full flex flex-col items-center gap-12 py-18 px-3 md:px-0">
-        <div className="relative w-full bg-white border-3 rounded-xl p-12 grid grid-cols-1 md:grid-cols-12 items-center gap-6 transition transform hover:scale-105">
+        <div className="relative w-full bg-white border-3 rounded-xl p-12 grid grid-cols-1 md:grid-cols-12 items-center gap-6">
           <div className="hidden md:flex md:col-span-4 justify-center">
             <img
               src="assets/media/img/img-hnf-pixel.png"
@@ -200,13 +283,13 @@ export default function Home() {
 
       <section id="skillsets" className="max-w-6xl w-full flex flex-col items-center gap-12 py-18 px-3 md:px-0">
         <h2 className="font-pixel text-white font-regular text-2xl pixel-border">SKILLSETS</h2>
-        <div className="w-full bg-white border-3 rounded-2xl p-12 flex flex-col gap-6 transition transform hover:scale-105">
+        <div className="w-full bg-white border-3 rounded-2xl p-12 flex flex-col gap-6">
           <h4 className="font-pixel text-white font-regular text-lg pixel-border">Skills</h4>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {skills.map((item, index) => (
               <div
                 key={index}
-                className={`border-3 px-4 py-5 rounded-xl flex flex-col gap-4 ${item.bg}`}
+                className={`border-3 px-4 py-5 rounded-xl flex flex-col gap-4 hover:scale-110 transition ${item.bg}`}
               >
                 <h3 className="uppercase font-bold text-3xl whitespace-pre-line">
                   {item.title}
@@ -246,9 +329,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="max-w-6xl w-full flex flex-col items-center gap-12 py-18 px-3 md:px-0">
+      <section id="works" className="max-w-6xl w-full flex flex-col items-center gap-12 py-18 px-3 md:px-0">
         <h2 className="font-pixel text-white font-regular text-2xl pixel-border">WORKS</h2>
-        <div className="w-full bg-white border-3 rounded-2xl p-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 transition transform hover:scale-105">
+        <div className="w-full bg-white border-3 rounded-2xl p-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
           {portfolios.map((item, index) => (
             <div
               key={index}
@@ -336,12 +419,17 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="max-w-6xl w-full flex flex-col items-center gap-12 py-18 px-3 md:px-0">
-        <h2 className="font-pixel">Contact</h2>
-        <div className="w-full bg-white border-3 rounded-xl scale-100 hover:scale-105 transition p-12">
+      <section id="contact" className="max-w-6xl w-full flex flex-col items-center gap-12 py-18 px-3 md:px-0">
+        <h2 className="font-pixel text-white font-regular text-2xl pixel-border">CONTACT</h2>
+        <div className="w-full bg-white border-3 rounded-xl p-12">
           a
         </div>
       </section>
+
+      <footer className="w-full py-12 bg-neonpink h-1/2 rounded-t-2xl border-3 text-center">
+        ©2025 - Hanif Royyan
+      </footer>
     </div>
   );
-}
+} 
+
