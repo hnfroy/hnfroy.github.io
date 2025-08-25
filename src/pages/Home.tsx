@@ -426,7 +426,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="w-full py-12 bg-neonpink h-1/2 rounded-t-2xl border-3 text-center">
+      <footer className="w-full py-12 bg-yellow-dent h-1/2 rounded-t-2xl border-3 text-center">
         ©2025 - Hanif Royyan
       </footer>
     </div>
