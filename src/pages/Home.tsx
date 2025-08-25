@@ -422,7 +422,10 @@ export default function Home() {
       <section id="contact" className="max-w-6xl w-full flex flex-col items-center gap-12 py-18 px-3 md:px-0">
         <h2 className="font-pixel text-white font-regular text-2xl pixel-border">CONTACT</h2>
         <div className="w-full bg-white border-3 rounded-xl p-12">
-          a
+          <div className="flex flex-col gap-2">
+            <h3 className="font-pixel text-white text-3xl pixel-border">GET IN TOUCH</h3>
+            <p className="font-medium">Whether you have a question, want to collaborate, or just say hi, my inbox is always open! I'll try my best to get back to you as soon as possible.</p>
+          </div>
         </div>
       </section>
 
