@@ -233,12 +233,6 @@
   .top-3 {
     top: calc(var(--spacing) * 3);
   }
-  .top-6 {
-    top: calc(var(--spacing) * 6);
-  }
-  .top-12 {
-    top: calc(var(--spacing) * 12);
-  }
   .top-24 {
     top: calc(var(--spacing) * 24);
   }
@@ -248,17 +242,11 @@
   .right-4 {
     right: calc(var(--spacing) * 4);
   }
-  .right-6 {
-    right: calc(var(--spacing) * 6);
-  }
   .right-12 {
     right: calc(var(--spacing) * 12);
   }
   .bottom-0 {
     bottom: calc(var(--spacing) * 0);
-  }
-  .bottom-6 {
-    bottom: calc(var(--spacing) * 6);
   }
   .left-0 {
     left: calc(var(--spacing) * 0);
@@ -272,14 +260,8 @@
   .left-3 {
     left: calc(var(--spacing) * 3);
   }
-  .left-6 {
-    left: calc(var(--spacing) * 6);
-  }
   .z-50 {
     z-index: 50;
-  }
-  .z-99 {
-    z-index: 99;
   }
   .z-\[99\] {
     z-index: 99;
@@ -371,6 +353,9 @@
   .h-12 {
     height: calc(var(--spacing) * 12);
   }
+  .h-\[14px\] {
+    height: 14px;
+  }
   .h-\[76px\] {
     height: 76px;
   }
@@ -412,6 +397,9 @@
   }
   .w-16 {
     width: calc(var(--spacing) * 16);
+  }
+  .w-\[4px\] {
+    width: 4px;
   }
   .w-\[70px\] {
     width: 70px;
@@ -471,6 +459,9 @@
   .items-center {
     align-items: center;
   }
+  .items-end {
+    align-items: flex-end;
+  }
   .justify-between {
     justify-content: space-between;
   }
@@ -497,6 +488,9 @@
   }
   .gap-12 {
     gap: calc(var(--spacing) * 12);
+  }
+  .gap-\[3px\] {
+    gap: 3px;
   }
   .overflow-auto {
     overflow: auto;
@@ -539,20 +533,17 @@
     border-style: var(--tw-border-style);
     border-width: 3px;
   }
-  .border-4 {
-    border-style: var(--tw-border-style);
-    border-width: 4px;
-  }
   .border-y-3 {
     border-block-style: var(--tw-border-style);
     border-block-width: 3px;
   }
+  .border-b {
+    border-bottom-style: var(--tw-border-style);
+    border-bottom-width: 1px;
+  }
   .border-l-3 {
     border-left-style: var(--tw-border-style);
     border-left-width: 3px;
-  }
-  .border-\[\#5e17eb\] {
-    border-color: #5e17eb;
   }
   .border-black {
     border-color: var(--color-black);
@@ -565,12 +556,6 @@
   }
   .border-white {
     border-color: var(--color-white);
-  }
-  .bg-\[\#1a1a1a\] {
-    background-color: #1a1a1a;
-  }
-  .bg-\[\#5e17eb\] {
-    background-color: #5e17eb;
   }
   .bg-black {
     background-color: var(--color-black);
@@ -601,9 +586,6 @@
   }
   .bg-purple-400 {
     background-color: var(--color-purple-400);
-  }
-  .bg-red-300 {
-    background-color: var(--color-red-300);
   }
   .bg-red-400 {
     background-color: var(--color-red-400);
@@ -693,17 +675,11 @@
     font-size: var(--text-sm);
     line-height: var(--tw-leading, var(--text-sm--line-height));
   }
-  .text-\[10px\] {
-    font-size: 10px;
-  }
   .text-\[12px\] {
     font-size: 12px;
   }
   .text-\[14px\] {
     font-size: 14px;
-  }
-  .text-\[16px\] {
-    font-size: 16px;
   }
   .text-\[22px\] {
     font-size: 22px;
@@ -741,14 +717,8 @@
   .text-black {
     color: var(--color-black);
   }
-  .text-gray-300 {
-    color: var(--color-gray-300);
-  }
   .text-gray-700 {
     color: var(--color-gray-700);
-  }
-  .text-slate-800 {
-    color: var(--color-slate-800);
   }
   .text-white {
     color: var(--color-white);
@@ -761,6 +731,10 @@
   }
   .opacity-60 {
     opacity: 60%;
+  }
+  .shadow-md {
+    --tw-shadow: 0 4px 6px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 2px 4px -2px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
   .shadow-xl {
     --tw-shadow: 0 20px 25px -5px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 8px 10px -6px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
@@ -790,6 +764,12 @@
     transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, visibility, content-visibility, overlay, pointer-events;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .last\:border-none {
+    &:last-child {
+      --tw-border-style: none;
+      border-style: none;
+    }
   }
   .hover\:scale-105 {
     &:hover {
@@ -843,6 +823,13 @@
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-pink-400);
+      }
+    }
+  }
+  .hover\:text-white {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-white);
       }
     }
   }
