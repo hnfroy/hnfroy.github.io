@@ -14,14 +14,6 @@ const logos = [
   { src: "assets/media/img/logo/photoshop.png", alt: "Photoshop" },
 ];
 
-type Skill = {
-  title: string;
-  desc: string;
-  bg: string;
-  hover: string;
-  tags: string[];
-};
-
 const skills = [
   {
     title: "UI/UX\nDESIGN",
@@ -150,7 +142,7 @@ export default function Home() {
   }, []);
 
   // 🔹 Animasi skill tags
-  const animateTags = () => {
+  useEffect(() => {
     tagRefs.current.forEach((skillTags) => {
       skillTags.forEach((tag) => {
         if (tag) {
@@ -171,22 +163,22 @@ export default function Home() {
         }
       });
     });
-  };
+  }, []);
 
   // 🔹 Animasi logo floating
-  const animateLogos = () => {
-    logoRefs.current.forEach((el: gsap.TweenTarget, i: number) => {
+  useEffect(() => {
+    logoRefs.current.forEach((el, i) => {
       if (el) {
         gsap.to(el, {
-          y: 15,
-          duration: 2 + i * 0.2,
+          y: 15, // naik turun
+          duration: 2 + i * 0.4, // durasi beda-beda biar lebih natural
           repeat: -1,
           yoyo: true,
           ease: "power1.inOut",
         });
       }
     });
-  };
+  }, []);
 
   // 🔹 Animasi modal ketika muncul
   const animateModal = () => {
