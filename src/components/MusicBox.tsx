@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Play } from "lucide-react";
+import { Play, SkipBack, SkipForward } from "lucide-react";
 import { gsap } from "gsap";
 
 export default function MusicBox() {
@@ -9,14 +9,14 @@ export default function MusicBox() {
   const barsRef = useRef<HTMLDivElement[]>([]);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Playlist dummy
+  // Playlist
   const playlist = [
-    { title: "Vaporwave Loop", src: "assets/media/music/retro-game-80.mp3" },
-    { title: "Chiptune Vibes", src: "assets/media/music/chiptune-vibes.mp3" },
-    { title: "Pixel Adventure", src: "assets/media/music/pixel-adventure.mp3" },
+    { title: "Arcade", src: "assets/media/music/retro-game-80.mp3" },
+    { title: "Mountain Trials", src: "assets/media/music/mountain-trials.mp3" },
   ];
 
-  const [currentTrack, setCurrentTrack] = useState(playlist[0]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const currentTrack = playlist[currentIndex];
   const [showDropdown, setShowDropdown] = useState(false);
 
   // Auto start saat scroll / mouse
@@ -79,6 +79,17 @@ export default function MusicBox() {
     }
   }, [showDropdown]);
 
+  // Auto play kalau currentIndex berubah
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    audio.src = playlist[currentIndex].src;
+    audio.play()
+      .then(() => setIsPlaying(true))
+      .catch(() => setIsPlaying(false));
+  }, [currentIndex]);
+
   const togglePlay = () => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -92,30 +103,30 @@ export default function MusicBox() {
     }
   };
 
-  const changeTrack = (track: { title: string; src: string }) => {
-    const audio = audioRef.current;
-    if (!audio) return;
-    setCurrentTrack(track);
-    audio.src = track.src;
-    audio.play();
-    setIsPlaying(true);
-    setShowDropdown(false);
+  const nextTrack = () => {
+    setCurrentIndex((prev) => (prev + 1) % playlist.length);
+  };
+
+  const prevTrack = () => {
+    setCurrentIndex((prev) => (prev - 1 + playlist.length) % playlist.length);
   };
 
   return (
-    <div className="fixed top-24 right-12 font-pixel z-[99]">
+    <div className="fixed top-26 right-12 font-pixel z-[50]">
       {/* Main Box */}
-      <div
-        className="bg-neonpink border-3 border-black rounded-lg p-4 shadow-xl flex items-center gap-3 cursor-pointer relative"
-        onClick={() => setShowDropdown((prev) => !prev)}
-      >
-        {/* Button / Equalizer */}
+      <div className="bg-neonpink border-3 border-black rounded-lg p-4 shadow-xl flex items-center gap-3 relative">
+        {/* Prev button */}
+        <button
+          onClick={prevTrack}
+          className="w-8 h-8 flex items-center justify-center border-2 border-black bg-red-400 rounded-md hover:bg-red-500"
+        >
+          <SkipBack size={16} />
+        </button>
+
+        {/* Play / Equalizer */}
         <div
           className="relative flex items-center justify-center w-12 h-12 border-3 rounded-lg border-black bg-red-400 text-black cursor-pointer overflow-hidden"
-          onClick={(e) => {
-            e.stopPropagation(); // biar gak trigger dropdown
-            togglePlay();
-          }}
+          onClick={togglePlay}
         >
           {isPlaying ? (
             <div className="flex items-end gap-[3px]">
@@ -135,8 +146,19 @@ export default function MusicBox() {
           )}
         </div>
 
-        {/* Info */}
-        <div className="flex flex-col leading-tight">
+        {/* Next button */}
+        <button
+          onClick={nextTrack}
+          className="w-8 h-8 flex items-center justify-center border-2 border-black bg-red-400 rounded-md hover:bg-red-500"
+        >
+          <SkipForward size={16} />
+        </button>
+
+        {/* Info (klik untuk toggle dropdown) */}
+        <div
+          className="flex flex-col leading-tight cursor-pointer ml-2"
+          onClick={() => setShowDropdown((prev) => !prev)}
+        >
           <span className="text-[14px] text-black tracking-wider font-semibold">
             NOW PLAYING
           </span>
@@ -153,10 +175,10 @@ export default function MusicBox() {
         {playlist.map((track, i) => (
           <div
             key={i}
-            className={`px-4 py-2 cursor-pointer hover:bg-neonpink hover:text-dark border-b border-black last:border-none ${
-              track.src === currentTrack.src ? "bg-neonpink text-white" : ""
+            className={`px-4 py-2 cursor-pointer hover:bg-neonpink hover:text-white border-b border-black last:border-none ${
+              i === currentIndex ? "bg-neonpink text-white" : ""
             }`}
-            onClick={() => changeTrack(track)}
+            onClick={() => setCurrentIndex(i)}
           >
             {track.title}
           </div>

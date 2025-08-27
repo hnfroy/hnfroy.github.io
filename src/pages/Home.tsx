@@ -49,36 +49,71 @@ interface Portfolio {
 const portfolios: Portfolio[] = [
   {
     images: [
+      "assets/media/img/portfolio/kredit-pensiun.png",
+    ],
+    alt: "Wordpress Project",
+    title: "Kredit Pensiun",
+    desc: "KreditPensiun.id is a pension credit information service website developed using WordPress and successfully completed in just 2 days. This website is designed with a simple, professional, and responsive look so that it is comfortably accessible through various devices. The focus of development is on ease of navigation, clear presentation of information, and the integration of a contact form so that visitors can directly ask questions or requests in a practical manner. This website is an effective digital solution to expand the reach of pension credit services online.",
+    tech: ["WordPress", "WP Admin", "WP Plugin"],
+  },
+  {
+    images: [
       "assets/media/img/portfolio/djki-pengaduan.png",
-      "https://picsum.photos/500/300",
-      "https://picsum.photos/500/301",
     ],
     alt: "DJKI Project",
     title: "DJKI Pengaduan",
-    desc: "Sistem pengaduan online untuk Direktorat Jenderal Kekayaan Intelektual.",
-    tech: ["React", "Tailwind", "TypeScript"],
+    desc: "Website DJKI Pengaduan adalah platform digital yang dikembangkan untuk memudahkan masyarakat dalam menyampaikan pengaduan terkait layanan Direktorat Jenderal Kekayaan Intelektual. Website ini dirancang dengan tampilan sederhana, responsif, dan user-friendly sehingga dapat diakses dengan mudah melalui berbagai perangkat.",
+    tech: ["React", "Tailwind", "TypeScript", "UI/UX Design", "Design Thinking"],
   },
   {
     images: [
-      "https://picsum.photos/200/300",
-      "https://picsum.photos/500/303",
-      "https://picsum.photos/500/304",
+      "assets/media/img/portfolio/asean-japan.png",
+
     ],
-    alt: "Dummy Project",
-    title: "Dummy Portfolio",
-    desc: "Contoh portfolio menggunakan dummy image.",
-    tech: ["Next.js", "GSAP", "Framer Motion"],
+    alt: "Website ASEAN-JAPAN",
+    title: "Website ASEAN-JAPAN",
+    desc: "Website yang mendukung kolaborasi ASEAN-Japan, dengan tampilan profesional dan aksesibilitas yang responsif.",
+    tech: ["WordPress", "Tailwind", "Custom UI"],
   },
   {
     images: [
-      "https://picsum.photos/400/301",
-      "https://picsum.photos/500/303",
-      "https://picsum.photos/500/304",
+      "assets/media/img/portfolio/fumira-cmd.png",
+
     ],
-    alt: "Dummy Project",
-    title: "Dummy Portfolio",
-    desc: "Contoh portfolio menggunakan dummy image.",
-    tech: ["Next.js", "GSAP", "Framer Motion"],
+    alt: "Website Fumira - Cipta Multi Distribusindo",
+    title: "Website Fumira - Cipta Multi Distribusindo",
+    desc: "Website company profile untuk Cipta Multi Distribusindo (Fumira), menampilkan informasi produk, layanan, dan profil perusahaan secara jelas dan modern.",
+    tech: ["WordPress", "Elementor", "SEO Optimization"],
+  },
+  {
+    images: [
+      "assets/media/img/portfolio/intrakasa.png",
+
+    ],
+    alt: "Website Inti Ragam Perkasa",
+    title: "Website Inti Ragam Perkasa",
+    desc: "Website profesional untuk perusahaan Inti Ragam Perkasa, dirancang dengan struktur yang rapi dan fungsional untuk kebutuhan korporasi.",
+    tech: ["WordPress", "Tailwind", "Responsive Design"],
+  },
+  {
+    images: [
+      "assets/media/img/portfolio/mpkreasi.png",
+
+    ],
+    alt: "Website Muda Penuh Kreasi",
+    title: "Website Muda Penuh Kreasi",
+    desc: "Platform digital kreatif yang menampilkan portofolio dan karya dari Muda Penuh Kreasi, dengan desain modern dan interaktif.",
+    tech: ["Next.js", "Framer Motion", "Tailwind CSS"],
+  },
+  {
+    images: [
+      "assets/media/img/portfolio/itk.png",
+
+    ],
+    alt: "Website Indonesia Traditional Knowledge",
+    title: "Website Indonesia Traditional Knowledge",
+    desc: "Website yang mengangkat pengetahuan tradisional Indonesia, menampilkan konten budaya dengan desain yang elegan dan mudah diakses.",
+    tech: ["WordPress", "Custom Theme", "Multilingual Support"],
   },
 ];
 
@@ -350,7 +385,7 @@ export default function Home() {
                   ✕
                 </button>
 
-                <div className="flex flex-col items-center justify-center relative ">
+                <div className="flex flex-col items-start justify-start relative">
                   <img
                     src={selected.images[currentImage]}
                     alt={selected.alt}
