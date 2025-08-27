@@ -39,6 +39,7 @@ const skills = [
 ];
 
 interface Portfolio {
+  type: string;
   images: string[];
   alt: string;
   title: string;
@@ -48,74 +49,103 @@ interface Portfolio {
 
 const portfolios: Portfolio[] = [
   {
-    images: [
-      "assets/media/img/portfolio/kredit-pensiun.png",
-    ],
+    images: ["assets/media/img/portfolio/kredit-pensiun.png"],
     alt: "Wordpress Project",
     title: "Kredit Pensiun",
     desc: "KreditPensiun.id is a pension credit information service website developed using WordPress and successfully completed in just 2 days. This website is designed with a simple, professional, and responsive look so that it is comfortably accessible through various devices. The focus of development is on ease of navigation, clear presentation of information, and the integration of a contact form so that visitors can directly ask questions or requests in a practical manner. This website is an effective digital solution to expand the reach of pension credit services online.",
     tech: ["WordPress", "WP Admin", "WP Plugin"],
+    type: "Project",
   },
   {
-    images: [
-      "assets/media/img/portfolio/djki-pengaduan.png",
-    ],
+    images: ["assets/media/img/portfolio/djki-pengaduan.png"],
     alt: "DJKI Project",
     title: "DJKI Pengaduan",
     desc: "Website DJKI Pengaduan adalah platform digital yang dikembangkan untuk memudahkan masyarakat dalam menyampaikan pengaduan terkait layanan Direktorat Jenderal Kekayaan Intelektual. Website ini dirancang dengan tampilan sederhana, responsif, dan user-friendly sehingga dapat diakses dengan mudah melalui berbagai perangkat.",
     tech: ["React", "Tailwind", "TypeScript", "UI/UX Design", "Design Thinking"],
+    type: "Study Case",
   },
   {
-    images: [
-      "assets/media/img/portfolio/asean-japan.png",
-
-    ],
+    images: ["assets/media/img/portfolio/asean-japan.png"],
     alt: "Website ASEAN-JAPAN",
     title: "Website ASEAN-JAPAN",
     desc: "Website yang mendukung kolaborasi ASEAN-Japan, dengan tampilan profesional dan aksesibilitas yang responsif.",
     tech: ["WordPress", "Tailwind", "Custom UI"],
+    type: "Project",
   },
   {
-    images: [
-      "assets/media/img/portfolio/fumira-cmd.png",
-
-    ],
+    images: ["assets/media/img/portfolio/fumira-cmd.png"],
     alt: "Website Fumira - Cipta Multi Distribusindo",
     title: "Website Fumira - Cipta Multi Distribusindo",
     desc: "Website company profile untuk Cipta Multi Distribusindo (Fumira), menampilkan informasi produk, layanan, dan profil perusahaan secara jelas dan modern.",
     tech: ["WordPress", "Elementor", "SEO Optimization"],
+    type: "Project",
   },
   {
-    images: [
-      "assets/media/img/portfolio/intrakasa.png",
-
-    ],
+    images: ["assets/media/img/portfolio/intrakasa.png"],
     alt: "Website Inti Ragam Perkasa",
     title: "Website Inti Ragam Perkasa",
     desc: "Website profesional untuk perusahaan Inti Ragam Perkasa, dirancang dengan struktur yang rapi dan fungsional untuk kebutuhan korporasi.",
     tech: ["WordPress", "Tailwind", "Responsive Design"],
+    type: "Project",
   },
   {
-    images: [
-      "assets/media/img/portfolio/mpkreasi.png",
-
-    ],
+    images: ["assets/media/img/portfolio/mpkreasi.png"],
     alt: "Website Muda Penuh Kreasi",
     title: "Website Muda Penuh Kreasi",
     desc: "Platform digital kreatif yang menampilkan portofolio dan karya dari Muda Penuh Kreasi, dengan desain modern dan interaktif.",
     tech: ["Next.js", "Framer Motion", "Tailwind CSS"],
+    type: "Study Case",
   },
   {
-    images: [
-      "assets/media/img/portfolio/itk.png",
-
-    ],
+    images: ["assets/media/img/portfolio/itk.png"],
     alt: "Website Indonesia Traditional Knowledge",
     title: "Website Indonesia Traditional Knowledge",
     desc: "Website yang mengangkat pengetahuan tradisional Indonesia, menampilkan konten budaya dengan desain yang elegan dan mudah diakses.",
     tech: ["WordPress", "Custom Theme", "Multilingual Support"],
+    type: "Project",
+  },
+  {
+    images: ["assets/media/img/portfolio/kikomunal.png"],
+    alt: "Website DJKI KIKomunal",
+    title: "Website DJKI KIKomunal",
+    desc: "Portal resmi KIKomunal DJKI yang menyediakan informasi terkait kekayaan intelektual komunal di Indonesia, dengan tampilan informatif dan navigasi yang mudah.",
+    tech: ["WordPress", "Custom Theme", "API Integration"],
+    type: "Project",
+  },
+  {
+    images: ["assets/media/img/portfolio/anrize.png"],
+    alt: "Website Anrize Tridaya Utama",
+    title: "Website Anrize Tridaya Utama",
+    desc: "Website company profile resmi Anrize Tridaya Utama, menghadirkan informasi produk dan layanan perusahaan dengan desain modern dan profesional.",
+    tech: ["WordPress", "Elementor", "SEO Optimization"],
+    type: "Project",
+  },
+  {
+    images: ["assets/media/img/portfolio/compro-it.png"],
+    alt: "Company Profile IT",
+    title: "Company Profile IT",
+    desc: "Website company profile untuk sektor teknologi informasi, dengan fokus pada desain profesional, struktur rapi, dan optimasi performa.",
+    tech: ["Next.js", "Tailwind CSS", "GSAP"],
+    type: "Study Case",
+  },
+  {
+    images: ["assets/media/img/portfolio/compro.png"],
+    alt: "Company Profile",
+    title: "Company Profile",
+    desc: "Website company profile generik yang dirancang dengan tampilan elegan dan responsif, cocok untuk kebutuhan presentasi perusahaan.",
+    tech: ["WordPress", "Bootstrap", "Responsive Design"],
+    type: "Project",
+  },
+  {
+    images: ["assets/media/img/portfolio/compro-archive.png"],
+    alt: "Company Profile Archive",
+    title: "Company Profile Archive",
+    desc: "Website arsip company profile yang menyajikan dokumentasi perusahaan dalam format digital, memudahkan akses informasi secara historis.",
+    tech: ["WordPress", "Tailwind", "SEO Optimization"],
+    type: "Project",
   },
 ];
+
 
 
 
@@ -362,13 +392,23 @@ export default function Home() {
           {portfolios.map((item, index) => (
             <div
               key={index}
-              className="border-3 rounded-xl overflow-auto cursor-pointer transform transition hover:scale-105"
+              className="relative border-3 rounded-xl overflow-hidden cursor-pointer transform transition hover:scale-105"
               onClick={() => {
                 setSelected(item);
                 setCurrentImage(0);
               }}
             >
-              <img src={item.images[0]} alt={item.alt} className="w-full h-[240px] object-cover" />
+              {/* Label */}
+              <span className="absolute top-3 left-3 bg-yellow-400 text-black border-2 text-xs font-semibold px-3 py-1 rounded-full shadow-md">
+                {item.type ?? "Project"} {/* bisa diisi "Study Case" / "Project" */}
+              </span>
+
+              {/* Image */}
+              <img
+                src={item.images[0]}
+                alt={item.alt}
+                className="w-full h-[240px] object-cover"
+              />
             </div>
           ))}
 
