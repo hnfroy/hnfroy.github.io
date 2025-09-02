@@ -223,6 +223,15 @@
   .inset-y-0 {
     inset-block: calc(var(--spacing) * 0);
   }
+  .-top-5 {
+    top: calc(var(--spacing) * -5);
+  }
+  .-top-12 {
+    top: calc(var(--spacing) * -12);
+  }
+  .-top-15 {
+    top: calc(var(--spacing) * -15);
+  }
   .top-0 {
     top: calc(var(--spacing) * 0);
   }
@@ -238,6 +247,18 @@
   .top-26 {
     top: calc(var(--spacing) * 26);
   }
+  .-right-0 {
+    right: calc(var(--spacing) * -0);
+  }
+  .-right-5 {
+    right: calc(var(--spacing) * -5);
+  }
+  .-right-12 {
+    right: calc(var(--spacing) * -12);
+  }
+  .-right-15 {
+    right: calc(var(--spacing) * -15);
+  }
   .right-0 {
     right: calc(var(--spacing) * 0);
   }
@@ -250,8 +271,32 @@
   .right-12 {
     right: calc(var(--spacing) * 12);
   }
+  .-bottom-0 {
+    bottom: calc(var(--spacing) * -0);
+  }
+  .-bottom-5 {
+    bottom: calc(var(--spacing) * -5);
+  }
+  .-bottom-12 {
+    bottom: calc(var(--spacing) * -12);
+  }
+  .-bottom-15 {
+    bottom: calc(var(--spacing) * -15);
+  }
   .bottom-0 {
     bottom: calc(var(--spacing) * 0);
+  }
+  .-left-5 {
+    left: calc(var(--spacing) * -5);
+  }
+  .-left-8 {
+    left: calc(var(--spacing) * -8);
+  }
+  .-left-12 {
+    left: calc(var(--spacing) * -12);
+  }
+  .-left-15 {
+    left: calc(var(--spacing) * -15);
   }
   .left-0 {
     left: calc(var(--spacing) * 0);
@@ -364,11 +409,20 @@
   .h-\[14px\] {
     height: 14px;
   }
+  .h-\[20px\] {
+    height: 20px;
+  }
   .h-\[76px\] {
     height: 76px;
   }
+  .h-\[150px\] {
+    height: 150px;
+  }
   .h-\[240px\] {
     height: 240px;
+  }
+  .h-\[250px\] {
+    height: 250px;
   }
   .h-\[300px\] {
     height: 300px;
@@ -925,9 +979,24 @@
       grid-template-columns: repeat(12, minmax(0, 1fr));
     }
   }
+  .md\:flex-row {
+    @media (width >= 48rem) {
+      flex-direction: row;
+    }
+  }
+  .md\:p-24 {
+    @media (width >= 48rem) {
+      padding: calc(var(--spacing) * 24);
+    }
+  }
   .md\:px-0 {
     @media (width >= 48rem) {
       padding-inline: calc(var(--spacing) * 0);
+    }
+  }
+  .md\:px-24 {
+    @media (width >= 48rem) {
+      padding-inline: calc(var(--spacing) * 24);
     }
   }
   .md\:text-\[32px\] {

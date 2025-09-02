@@ -7,7 +7,7 @@ const links = [
   { name: "Skillsets", path: "#skillsets" },
   { name: "Works", path: "#works" },
   { name: "Contact", path: "#contact" },
-  { name: "Check CV", path: "/cv" },
+  { name: "Check CV", path: "public/CV_M-Hanif-Royyan-R.pdf" },
 ];
 
 export default function Navbar() {
@@ -17,7 +17,7 @@ export default function Navbar() {
   // Deteksi scroll untuk blur effect
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20); // kalau scroll > 20px
+      setScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -54,11 +54,25 @@ export default function Navbar() {
               );
             }
 
+            if (link.name === "Check CV") {
+              return (
+                <a
+                  key={link.name}
+                  href={link.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-5 py-2 bg-mint border-3 rounded-xl -ml-[8px] font-pixel text-sm transition hover:bg-lime-500"
+                >
+                  {link.name}
+                </a>
+              );
+            }
+
             return (
               <NavLink
                 key={link.name}
                 to={link.path}
-                className="px-5 py-2 bg-mint border-3 rounded-xl -ml-[8px] font-pixel text-sm transition hover:bg-lime-500"
+                className="px-5 py-2 bg-white border-y-3 border-l-3 rounded-l-xl font-pixel text-sm transition hover:bg-pink-400"
               >
                 {link.name}
               </NavLink>
@@ -85,6 +99,21 @@ export default function Navbar() {
                   <a
                     key={link.name}
                     href={link.path}
+                    onClick={() => setIsOpen(false)}
+                    className="font-pixel transition text-black hover:text-pink"
+                  >
+                    {link.name}
+                  </a>
+                );
+              }
+
+              if (link.name === "Check CV") {
+                return (
+                  <a
+                    key={link.name}
+                    href={link.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     onClick={() => setIsOpen(false)}
                     className="font-pixel transition text-black hover:text-pink"
                   >
