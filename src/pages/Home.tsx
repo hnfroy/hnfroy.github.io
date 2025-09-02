@@ -62,14 +62,6 @@ const portfolios: Portfolio[] = [
     title: "DJKI Pengaduan",
     desc: "Website DJKI Pengaduan adalah platform digital yang dikembangkan untuk memudahkan masyarakat dalam menyampaikan pengaduan terkait layanan Direktorat Jenderal Kekayaan Intelektual. Website ini dirancang dengan tampilan sederhana, responsif, dan user-friendly sehingga dapat diakses dengan mudah melalui berbagai perangkat.",
     tech: ["React", "Tailwind", "TypeScript", "UI/UX Design", "Design Thinking"],
-    type: "Study Case",
-  },
-  {
-    images: ["assets/media/img/portfolio/asean-japan.png"],
-    alt: "Website ASEAN-JAPAN",
-    title: "Website ASEAN-JAPAN",
-    desc: "Website yang mendukung kolaborasi ASEAN-Japan, dengan tampilan profesional dan aksesibilitas yang responsif.",
-    tech: ["WordPress", "Tailwind", "Custom UI"],
     type: "Project",
   },
   {
@@ -77,7 +69,7 @@ const portfolios: Portfolio[] = [
     alt: "Website Fumira - Cipta Multi Distribusindo",
     title: "Website Fumira - Cipta Multi Distribusindo",
     desc: "Website company profile untuk Cipta Multi Distribusindo (Fumira), menampilkan informasi produk, layanan, dan profil perusahaan secara jelas dan modern.",
-    tech: ["WordPress", "Elementor", "SEO Optimization"],
+    tech: ["React", "Responsive Design", "UI/UX Design", "SCSS"],
     type: "Project",
   },
   {
@@ -85,7 +77,7 @@ const portfolios: Portfolio[] = [
     alt: "Website Inti Ragam Perkasa",
     title: "Website Inti Ragam Perkasa",
     desc: "Website profesional untuk perusahaan Inti Ragam Perkasa, dirancang dengan struktur yang rapi dan fungsional untuk kebutuhan korporasi.",
-    tech: ["WordPress", "Tailwind", "Responsive Design"],
+    tech: ["React", "Responsive Design", "UI/UX Design", "SCSS"],
     type: "Project",
   },
   {
@@ -93,15 +85,15 @@ const portfolios: Portfolio[] = [
     alt: "Website Muda Penuh Kreasi",
     title: "Website Muda Penuh Kreasi",
     desc: "Platform digital kreatif yang menampilkan portofolio dan karya dari Muda Penuh Kreasi, dengan desain modern dan interaktif.",
-    tech: ["Next.js", "Framer Motion", "Tailwind CSS"],
-    type: "Study Case",
+    tech: ["React", "Responsive Design", "UI/UX Design", "SCSS"],
+    type: "Project",
   },
   {
     images: ["assets/media/img/portfolio/itk.png"],
     alt: "Website Indonesia Traditional Knowledge",
     title: "Website Indonesia Traditional Knowledge",
     desc: "Website yang mengangkat pengetahuan tradisional Indonesia, menampilkan konten budaya dengan desain yang elegan dan mudah diakses.",
-    tech: ["WordPress", "Custom Theme", "Multilingual Support"],
+    tech: ["React Tsx", "Responsive Design", "UI/UX Design", "SCSS"],
     type: "Project",
   },
   {
@@ -109,7 +101,7 @@ const portfolios: Portfolio[] = [
     alt: "Website DJKI KIKomunal",
     title: "Website DJKI KIKomunal",
     desc: "Portal resmi KIKomunal DJKI yang menyediakan informasi terkait kekayaan intelektual komunal di Indonesia, dengan tampilan informatif dan navigasi yang mudah.",
-    tech: ["WordPress", "Custom Theme", "API Integration"],
+    tech: ["React Tsx", "Responsive Design", "UI/UX Design", "SCSS"],
     type: "Project",
   },
   {
@@ -117,7 +109,7 @@ const portfolios: Portfolio[] = [
     alt: "Website Anrize Tridaya Utama",
     title: "Website Anrize Tridaya Utama",
     desc: "Website company profile resmi Anrize Tridaya Utama, menghadirkan informasi produk dan layanan perusahaan dengan desain modern dan profesional.",
-    tech: ["WordPress", "Elementor", "SEO Optimization"],
+    tech: ["React", "Responsive Design", "UI/UX Design", "SCSS"],
     type: "Project",
   },
   {
@@ -134,6 +126,14 @@ const portfolios: Portfolio[] = [
     title: "Company Profile",
     desc: "Website company profile generik yang dirancang dengan tampilan elegan dan responsif, cocok untuk kebutuhan presentasi perusahaan.",
     tech: ["WordPress", "Bootstrap", "Responsive Design"],
+    type: "Study Case",
+  },
+  {
+    images: ["assets/media/img/portfolio/asean-japan.png"],
+    alt: "Website ASEAN-JAPAN",
+    title: "Website ASEAN-JAPAN",
+    desc: "Website yang mendukung kolaborasi ASEAN-Japan, dengan tampilan profesional dan aksesibilitas yang responsif.",
+    tech: ["Vue", "Responsive Design", "UI/UX Design", "SCSS"],
     type: "Project",
   },
   {
@@ -142,7 +142,7 @@ const portfolios: Portfolio[] = [
     title: "Company Profile Archive",
     desc: "Website arsip company profile yang menyajikan dokumentasi perusahaan dalam format digital, memudahkan akses informasi secara historis.",
     tech: ["WordPress", "Tailwind", "SEO Optimization"],
-    type: "Project",
+    type: "Study Case",
   },
 ];
 
@@ -399,7 +399,7 @@ export default function Home() {
               }}
             >
               {/* Label */}
-              <span className="absolute top-3 left-3 bg-yellow-400 text-black border-2 text-xs font-semibold px-3 py-1 rounded-full shadow-md">
+              <span className="absolute top-3 right-3 bg-yellow-400 text-black border-2 text-xs font-semibold px-3 py-1 rounded-full shadow-md">
                 {item.type ?? "Project"} {/* bisa diisi "Study Case" / "Project" */}
               </span>
 
