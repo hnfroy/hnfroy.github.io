@@ -49,6 +49,14 @@ interface Portfolio {
 
 const portfolios: Portfolio[] = [
   {
+    images: ["assets/media/img/portfolio/gpn.png"],
+    alt: "WebApp",
+    title: "Gerakan Pemuda Natuna",
+    desc: "Sistem manajemen organisasi berbasis web yang dirancang untuk mempermudah administrasi, pengelolaan keanggotaan, serta transparansi laporan keuangan bagi komunitas Gerakan Pemuda Natuna.",
+    tech: ["Next.js", "Node.js", "PostgreSQL", "Tailwind CSS"],
+    type: "Project",
+  },
+  {
     images: ["assets/media/img/portfolio/kredit-pensiun.png"],
     alt: "Wordpress Project",
     title: "Kredit Pensiun",
