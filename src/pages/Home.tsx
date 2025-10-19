@@ -309,7 +309,7 @@ export default function Home() {
       </section>
 
       <section id="me" className="max-w-6xl w-full flex flex-col items-center gap-12 py-18 px-3 md:px-0">
-        <div className="relative w-full bg-white border-3 rounded-xl p-12 grid grid-cols-1 md:grid-cols-12 items-center gap-6">
+        <div className="relative w-full bg-white border-3 rounded-xl p-8 md:p-12 grid grid-cols-1 md:grid-cols-12 items-center gap-6">
           <img src="assets/media/img/accent/vaporwave.png" alt="vaporwave" className="absolute -right-12 -bottom-5" />
           <div className="hidden md:flex md:col-span-4 justify-center">
             <img
@@ -348,7 +348,7 @@ export default function Home() {
 
       <section id="skillsets" className="max-w-6xl w-full flex flex-col items-center gap-12 py-18 px-3 md:px-0">
         <h2 className="font-pixel text-white font-regular text-2xl pixel-border">SKILLSETS</h2>
-        <div className="relative w-full bg-white border-3 rounded-2xl p-12 flex flex-col gap-6">
+        <div className="relative w-full bg-white border-3 rounded-2xl p-8 md:p-12 flex flex-col gap-6">
           <img src="assets/media/img/accent/game.png" alt="game" className="absolute -left-12 -top-12" />
           <img src="assets/media/img/accent/gameboy.png" alt="game" className="absolute -bottom-15 -right-15" />
           <h4 className="font-pixel text-white font-regular text-lg pixel-border">Skills</h4>
@@ -398,7 +398,7 @@ export default function Home() {
 
       <section id="works" className="max-w-6xl w-full flex flex-col items-center gap-12 py-18 px-3 md:px-0">
         <h2 className="font-pixel text-white font-regular text-2xl pixel-border">WORKS</h2>
-        <div className="relative w-full bg-white border-3 rounded-2xl p-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+        <div className="relative w-full bg-white border-3 rounded-2xl p-8 md:p-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
           <img src="assets/media/img/accent/headphone.png" alt="game" className="absolute -top-15 -left-15" />
           <img src="assets/media/img/accent/bottle.png" alt="game" className="absolute -bottom-15 -right-15" />
           {portfolios.map((item, index) => (
@@ -441,7 +441,7 @@ export default function Home() {
                   <img
                     src={selected.images[currentImage]}
                     alt={selected.alt}
-                    className="w-full h-[300px] object-cover rounded-xl border-2 "
+                    className="w-full h-[200px] md:h-[300px] object-cover rounded-xl border-2 "
                   />
                   <div className="absolute inset-y-0 left-0 flex items-center">
                     <button
@@ -478,14 +478,14 @@ export default function Home() {
                 </div>
 
                 {/* Konten */}
-                <div className="flex flex-col gap-4">
-                  <h2 className="text-3xl font-bold">{selected.title}</h2>
-                  <p className="text-lg text-gray-700">{selected.desc}</p>
+                <div className="flex flex-col gap-3 md:gap-4">
+                  <h2 className="text-2xl md:text-3xl font-bold">{selected.title}</h2>
+                  <p className="text-sm md:text-lg text-gray-700">{selected.desc}</p>
                   <div className="flex flex-wrap gap-2 mt-2">
                     {selected.tech.map((t: string, i: number) => (
                       <span
                         key={i}
-                        className="px-3 py-1 text-sm border-2 rounded-full bg-gray-100 font-medium"
+                        className="px-3 py-1 text-xs md:text-sm border-2 rounded-full bg-gray-100 font-medium"
                       >
                         {t}
                       </span>
@@ -500,7 +500,7 @@ export default function Home() {
 
       <section id="contact" className="max-w-6xl w-full flex flex-col items-center gap-12 py-18 px-3 md:px-0">
         <h2 className="font-pixel text-white font-regular text-2xl pixel-border">CONTACT</h2>
-        <div className="w-full bg-white flex flex-col md:flex-row items-center gap-12 border-3 rounded-xl p-12 md:px-24">
+        <div className="w-full bg-white flex flex-col md:flex-row items-center gap-12 border-3 rounded-xl p-8 md:p-12 md:px-24">
           <img
             src="assets/media/img/accent/img-contact.png"
             alt="Hanif Pixel"
