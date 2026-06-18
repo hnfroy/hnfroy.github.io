@@ -1,0 +1,146 @@
+---
+const categories = [
+  {
+    title: "Design",
+    emoji: "✦",
+    tools: [
+      "Figma", "Adobe XD", "Prototyping", "Wireframing",
+      "Design Systems", "User Flow", "User Research", "Usability Testing",
+      "Responsive Design", "Interaction Design", "Visual Design",
+    ],
+  },
+  {
+    title: "Frontend",
+    emoji: "⌥",
+    tools: [
+      "HTML5", "CSS3", "SASS", "JavaScript", "React", "Typescript",
+      "Tailwind CSS", "Bootstrap", "GSAP Animation",
+      "Responsive Implementation",
+    ],
+  },
+  {
+    title: "Tools",
+    emoji: "⚙",
+    tools: [
+      "VS Code", "Git & GitHub", "Canva", "Adobe Photoshop",
+      "Adobe Illustrator", "Notion", "Figma Dev Mode",
+    ],
+  },
+];
+---
+
+<section id="skills" class="py-32 px-6 md:px-16 border-t border-white/5">
+  <div class="max-w-5xl mx-auto">
+
+    <!-- Header -->
+    <div class="w-fit">
+      <p class="font-mono text-[#C8F135] text-xs tracking-[0.3em] uppercase mb-4">
+        <span class="typing-text">What I Work With</span>
+      </p>
+    </div>
+    <h2 class="text-4xl md:text-5xl font-bold mb-16 section-heading">Skills & Tools</h2>
+
+    <!-- Categories -->
+    <div class="space-y-14">
+      {categories.map((cat, ci) => (
+        <div class="skills-group" data-group={ci}>
+
+          <!-- Category label -->
+          <div class="flex items-center gap-3 mb-6">
+            <span class="text-[#C8F135]/40 text-xs font-mono">{cat.emoji}</span>
+            <h3 class="font-mono text-white/30 text-xs tracking-[0.25em] uppercase">{cat.title}</h3>
+            <div class="flex-1 h-px bg-white/5"></div>
+            <span class="font-mono text-white/15 text-xs">{cat.tools.length}</span>
+          </div>
+
+          <!-- Pills -->
+          <div class="flex flex-wrap gap-3">
+            {cat.tools.map((tool, ti) => (
+              <button
+                class="skill-pill group relative font-mono text-sm px-4 py-2 rounded-full border border-white/10 text-white/50 bg-white/[0.02] transition-all duration-300 ease-out hover:border-[#C8F135]/50 hover:text-[#C8F135] hover:bg-[#C8F135]/5 hover:scale-105 hover:-translate-y-0.5 active:scale-95"
+                data-tool={tool}
+                style={`animation-delay: ${(ci * 8 + ti) * 40}ms`}
+              >
+                <!-- Glow dot -->
+                <span class="absolute left-3 top-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-[#C8F135] opacity-0 group-hover:opacity-100 transition-opacity duration-200"></span>
+                <span class="group-hover:ml-2.5 transition-all duration-200">{tool}</span>
+              </button>
+            ))}
+          </div>
+
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  // Entrance animation — stagger pills per group
+  const groups = document.querySelectorAll('.skills-group');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const pills = entry.target.querySelectorAll('.skill-pill');
+      pills.forEach((pill, i) => {
+        setTimeout(() => {
+          (pill as HTMLElement).style.opacity = '1';
+          (pill as HTMLElement).style.transform = 'translateY(0) scale(1)';
+        }, i * 45);
+      });
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.2 });
+
+  groups.forEach(group => observer.observe(group));
+
+  // Stats entrance
+  const stats = document.querySelectorAll('.skills-stat');
+  const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      stats.forEach((stat, i) => {
+        setTimeout(() => {
+          (stat as HTMLElement).style.opacity = '1';
+          (stat as HTMLElement).style.transform = 'translateY(0)';
+        }, i * 100);
+      });
+      statObserver.unobserve(entry.target);
+    });
+  }, { threshold: 0.5 });
+
+  if (stats[0]) statObserver.observe(stats[0].parentElement!);
+
+  // Ripple effect on click
+  document.querySelectorAll('.skill-pill').forEach(pill => {
+    pill.addEventListener('click', function(e) {
+      const el = e.currentTarget as HTMLElement;
+      el.style.borderColor = 'rgba(200,241,53,0.8)';
+      el.style.background = 'rgba(200,241,53,0.1)';
+      setTimeout(() => {
+        el.style.borderColor = '';
+        el.style.background = '';
+      }, 600);
+    });
+  });
+</script>
+
+<style>
+  .skill-pill {
+    opacity: 0;
+    transform: translateY(12px) scale(0.95);
+    transition:
+      opacity 0.4s ease,
+      transform 0.4s ease,
+      border-color 0.3s ease,
+      color 0.3s ease,
+      background 0.3s ease,
+      scale 0.15s ease;
+  }
+
+  .skills-stat {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+</style>

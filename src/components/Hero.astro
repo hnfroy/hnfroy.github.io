@@ -1,0 +1,162 @@
+---
+---
+
+<section id="hero" class="min-h-screen flex flex-col justify-center px-6 md:px-16 pt-24 relative overflow-hidden">
+
+  <!-- Venetian Blinds Canvas -->
+  <canvas id="blinds-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
+
+  <!-- Content -->
+  <div class="max-w-5xl mx-auto w-full relative z-20">
+    <div class="w-fit">
+      <p class="font-mono text-[#C8F135] text-sm tracking-[0.3em] uppercase mb-6 hero-tag">
+        <span class="typing-text">UI/UX Product Designer</span>
+      </p>
+    </div>
+  
+    <h1 class="text-5xl md:text-8xl font-bold leading-[1.05] tracking-tight mb-8">
+      <span class="hero-title block">Turning ideas</span>
+      <span class="hero-title block text-white/30">into digital</span>
+      <span class="hero-title block text-[#C8F135]">experiences.</span>
+    </h1>
+
+    <p class="text-white/50 text-lg md:text-xl max-w-xl leading-relaxed mb-12 hero-desc">
+      Hi, I'm Hanif, a UI/UX Product Designer creating clean, intuitive, and impactful digital experiences.
+    </p>
+
+    <div class="flex items-center gap-6 flex-wrap hero-cta">
+      <a href="#projects" class="bg-[#C8F135] text-[#0A0A0A] font-semibold px-8 py-4 text-sm tracking-wide hover:bg-white transition-colors duration-200">
+        View My Work →
+      </a>
+      <a href="#contact" class="text-white/60 text-sm hover:text-[#C8F135] transition-colors border-b border-white/20 hover:border-[#C8F135] pb-0.5">
+        Get in touch
+      </a>
+    </div>
+
+    <div class="mt-20 flex gap-12 flex-wrap">
+      {[
+        { num: "4+", label: "Years Experience" },
+        { num: "20+", label: "Projects Completed" },
+      ].map(stat => (
+        <div class="hero-stat">
+          <p class="text-3xl font-bold text-[#C8F135]">{stat.num}</p>
+          <p class="text-white/40 text-sm mt-1">{stat.label}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const canvas = document.getElementById('blinds-canvas') as HTMLCanvasElement;
+  const section = canvas.closest('section') as HTMLElement;
+  const ctx = canvas.getContext('2d')!;
+
+  const COLS = 16;
+  const ROWS = 10;
+  const COLOR_CLOSED = 'rgba(200,241,53,0)';
+  const COLOR_LINE   = 'rgba(200,241,53,0.06)';
+  const COLOR_OPEN   = 'rgba(200,241,53,0.13)';
+
+  let W: number, H: number;
+  let cellW: number, cellH: number;
+  let mouse = { x: -1, y: -1 };
+
+  // Each cell has a current "open" value 0→1
+  const cells: { open: number; target: number }[][] = Array.from({ length: ROWS }, () =>
+    Array.from({ length: COLS }, () => ({ open: 0, target: 0 }))
+  );
+
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+    cellW = W / COLS;
+    cellH = H / ROWS;
+  }
+
+  section.addEventListener('mousemove', (e) => {
+    const r = section.getBoundingClientRect();
+    mouse.x = e.clientX - r.left;
+    mouse.y = e.clientY - r.top;
+  });
+
+  section.addEventListener('mouseleave', () => {
+    mouse.x = -1;
+    mouse.y = -1;
+  });
+
+  function updateTargets() {
+    for (let row = 0; row < ROWS; row++) {
+      for (let col = 0; col < COLS; col++) {
+        if (mouse.x < 0) {
+          cells[row][col].target = 0;
+          continue;
+        }
+        const cx = (col + 0.5) * cellW;
+        const cy = (row + 0.5) * cellH;
+        const dx = cx - mouse.x;
+        const dy = cy - mouse.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const radius = Math.min(W, H) * 0.28;
+        cells[row][col].target = Math.max(0, 1 - dist / radius);
+      }
+    }
+  }
+
+  function drawCell(col: number, row: number, openAmt: number) {
+    const x = col * cellW;
+    const y = row * cellH;
+
+    // Border lines (always visible, subtle)
+    ctx.strokeStyle = COLOR_LINE;
+    ctx.lineWidth = 0.5;
+    ctx.strokeRect(x, y, cellW, cellH);
+
+    if (openAmt <= 0.01) return;
+
+    // Venetian blind effect: reveal from top, slat slides down
+    const slatH = cellH * openAmt;
+
+    // Top revealed gap (bright accent)
+    ctx.fillStyle = COLOR_OPEN;
+    ctx.fillRect(x + 1, y + 1, cellW - 2, slatH - 1);
+
+    // Slat (slightly brighter line at bottom of gap)
+    const slatAlpha = 0.06 + openAmt * 0.18;
+    ctx.fillStyle = `rgba(200,241,53,${slatAlpha})`;
+    ctx.fillRect(x + 1, y + slatH - 2, cellW - 2, 2);
+  }
+
+  function animate() {
+    updateTargets();
+
+    // Lerp each cell toward target
+    let needsRedraw = false;
+    for (let row = 0; row < ROWS; row++) {
+      for (let col = 0; col < COLS; col++) {
+        const cell = cells[row][col];
+        const diff = cell.target - cell.open;
+        if (Math.abs(diff) > 0.002) {
+          cell.open += diff * 0.1;
+          needsRedraw = true;
+        } else {
+          cell.open = cell.target;
+        }
+      }
+    }
+
+    ctx.clearRect(0, 0, W, H);
+
+    for (let row = 0; row < ROWS; row++) {
+      for (let col = 0; col < COLS; col++) {
+        drawCell(col, row, cells[row][col].open);
+      }
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  resize();
+  animate();
+  window.addEventListener('resize', resize);
+</script>

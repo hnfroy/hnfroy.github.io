@@ -1,0 +1,131 @@
+---
+const jobs = [
+  {
+    role: "UI/UX Designer",
+    company: "PT. Fungsitama Cipta Teknologi",
+    type: "Fulltime",
+    period: "Jan 2026 — Present",
+    current: true,
+    points: [
+      "Design end-to-end UX for web apps, dashboards, and mobile apps.",
+      "Translate business requirements into wireframes and high-fidelity interfaces.",
+      "Collaborate with stakeholders and dev teams to align design with technical goals.",
+      "Apply UX best practices to improve usability and product clarity.",
+    ],
+  },
+  {
+    role: "Team Lead & UI/UX Designer",
+    company: "Freelance",
+    type: "Freelance",
+    period: "Feb 2025 — Present",
+    current: true,
+    points: [
+      "Lead and manage digital projects from planning to delivery.",
+      "Create intuitive interfaces and translate them into responsive front-end code.",
+      "Conduct in-depth research to understand client needs and provide relevant and effective solutions.",
+      "Act as main client liaison, turning needs into actionable design tasks.",
+    ],
+  },
+  {
+    role: "UI/UX Designer",
+    company: "PT. Sagara Xinix Solusitama",
+    type: "Fulltime",
+    period: "Oct 2022 — Nov 2025",
+    current: false,
+    points: [
+      "Delivered 15+ design and slicing projects with strong client satisfaction.",
+      "Designed user-focused UI/UX solutions aligned with client needs.",
+      "Translated designs into precise, responsive code across desktop and mobile.",
+      "Built foundational skills in Laravel and React for scalable front-end work.",
+    ],
+  },
+  {
+    role: "Front-End Developer",
+    company: "PT. Bangunindo Teknusa Jaya",
+    type: "Internship",
+    period: "Dec 2021 — Mar 2022",
+    current: false,
+    points: [
+      "Built and enhanced company websites using the CodeIgniter 4 framework.",
+      "Implemented responsive design by translating design files into clean code.",
+    ],
+  },
+  {
+    role: "Web Developer",
+    company: "CV. IDS",
+    type: "Internship",
+    period: "Mar 2021 — Jun 2021",
+    current: false,
+    points: [
+      "Developed the Kejar.id web interface with responsive and interactive design.",
+      "Collaborated with the team to translate wireframes into functional web pages.",
+    ],
+  },
+];
+---
+
+<section id="experience" class="py-32 px-6 md:px-16 border-t border-white/5">
+  <div class="max-w-5xl mx-auto">
+
+    <div class="w-fit">
+      <p class="font-mono text-[#C8F135] text-xs tracking-[0.3em] uppercase mb-4">
+        <span class="typing-text">Where I've Been</span>
+      </p>
+    </div>
+    <h2 class="text-4xl md:text-5xl font-bold mb-16 section-heading">Work Experience</h2>
+
+    <!-- Timeline -->
+    <div class="relative">
+
+      <!-- Vertical line -->
+      <div class="absolute left-0 md:left-[11rem] top-0 bottom-0 w-px bg-white/5 hidden md:block"></div>
+
+      <div class="space-y-0">
+        {jobs.map((job) => (
+          <div class="group relative grid md:grid-cols-[11rem_1fr] gap-6 md:gap-10 py-10 border-t border-white/5">
+
+            <!-- Left: period + type -->
+            <div class="md:pr-8 flex md:flex-col gap-3 md:gap-2 items-start">
+              <p class="font-mono text-white/30 text-xs leading-relaxed">{job.period}</p>
+              <span class={`text-[10px] font-mono px-2.5 py-1 rounded-full border ${
+                job.current
+                  ? 'border-[#C8F135]/30 text-[#C8F135] bg-[#C8F135]/5'
+                  : job.type === 'Internship'
+                  ? 'border-white/10 text-white/25'
+                  : 'border-white/10 text-white/25'
+              }`}>
+                {job.current ? '● ' : ''}{job.type}
+              </span>
+            </div>
+
+            <!-- Timeline dot -->
+            <div class={`absolute hidden md:block w-2 h-2 rounded-full top-[2.6rem] left-[10.75rem] border transition-colors duration-300 ${
+              job.current ? 'bg-[#C8F135] border-[#C8F135]' : 'bg-[#0A0A0A] border-white/20 group-hover:border-[#C8F135]'
+            }`}></div>
+
+            <!-- Right: content -->
+            <div>
+              <div class="flex items-start justify-between gap-4 mb-1">
+                <h3 class="text-base font-semibold text-white group-hover:text-[#C8F135] transition-colors duration-300">
+                  {job.role}
+                </h3>
+              </div>
+              <p class="text-white/35 text-sm mb-4 font-mono">{job.company}</p>
+
+              <ul class="space-y-2">
+                {job.points.map(point => (
+                  <li class="flex items-start gap-3 text-white/50 text-sm leading-relaxed">
+                    <span class="text-[#C8F135]/40 mt-1.5 flex-shrink-0 text-[8px]">◆</span>
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>

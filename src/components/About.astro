@@ -1,0 +1,103 @@
+---
+---
+
+<section id="about" class="py-32 px-6 md:px-16 border-t border-white/5">
+  <div class="max-w-5xl mx-auto">
+    <div class="grid md:grid-cols-4 gap-12 items-start">
+
+      <!-- LEFT: Photo 1/4 -->
+      <div class="md:col-span-1 about-photo-wrap">
+        <div class="relative group">
+          <!-- Photo frame -->
+          <div class="relative overflow-hidden bg-white/5 aspect-[3/4]">
+            <!-- Ganti src dengan foto kamu -->
+            <img
+              src="/me.jpg"
+              alt="Hanif Roy"
+              class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-120 group-hover:scale-100"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            />
+            <!-- Placeholder jika belum ada foto -->
+            <div class="absolute inset-0 hidden items-center justify-center flex-col gap-3 bg-white/[0.03]">
+              <div class="w-16 h-16 rounded-full bg-[#C8F135]/10 flex items-center justify-center">
+                <span class="text-[#C8F135] text-2xl font-bold font-mono">HR</span>
+              </div>
+              <span class="text-white/20 text-xs font-mono">your photo here</span>
+            </div>
+
+            <!-- Hover overlay -->
+            <div class="absolute inset-0 bg-[#C8F135]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+            <!-- Corner accent -->
+            <div class="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-[#C8F135] opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:w-8 group-hover:h-8"></div>
+            <div class="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-[#C8F135] opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:w-8 group-hover:h-8"></div>
+          </div>
+
+          <!-- Status badge -->
+          <div class="mt-4 flex items-center gap-2">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#C8F135] opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-[#C8F135]"></span>
+            </span>
+            <span class="font-mono text-[#C8F135] text-xs">Available for freelance</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Content 3/4 -->
+      <div class="md:col-span-3 space-y-8">
+
+        <!-- Label -->
+        <div class="w-fit">
+          <p class="font-mono text-[#C8F135] text-xs tracking-[0.3em] uppercase">
+            <span class="typing-text">About Me</span>
+          </p>
+        </div>
+
+        <!-- Name -->
+        <div class="about-name">
+          <h2 class="text-4xl md:text-6xl font-bold leading-tight">
+            Muhammad Hanif <span class="text-white/30">Royyan Ramdhani</span>
+          </h2>
+        </div>
+
+        <!-- Intro paragraphs -->
+        <div class="space-y-4">
+          <p class="about-para text-white/70 text-base leading-relaxed">
+            I'm a UI/UX Product Designer based in Indonesia, who is passionate about exploring between design and technology. With 3+ years of experience in various projects such as mobile applications, web platforms, and responsive web applications, I enjoy solving complex design challenges through design thinking and iterative processes.
+          </p>
+          <p class="about-para text-white/50 text-base leading-relaxed">
+            In addition, I also have expertise in frontend development using HTML, CSS, Sass, JavaScript, and React. I am able to adapt quickly to changes, and am used to working independently and collaboratively in a team.
+          </p>
+        </div>
+
+        <!-- Divider -->
+        <div class="about-divider h-px bg-white/5 w-full"></div>
+
+        <!-- Facts row -->
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+          {[
+            { label: "Based in", value: "Indonesia" },
+            { label: "Experience", value: "4+ Years" },
+          ].map(fact => (
+            <div class="about-fact group cursor-default">
+              <p class="font-mono text-white/25 text-xs tracking-widest uppercase mb-1 group-hover:text-[#C8F135]/60 transition-colors duration-300">{fact.label}</p>
+              <p class="text-white text-sm font-medium group-hover:text-[#C8F135] transition-colors duration-300">{fact.value}</p>
+            </div>
+          ))}
+        </div>
+        <!-- CTA buttons -->
+        <!-- <div class="flex items-center gap-4 flex-wrap about-cta">
+          
+          <a href="/cv-hanif-royyan.pdf" download="CV-Hanif-Royyan.pdf"
+            target="_blank"
+            class="group flex items-center gap-2 border border-white/10 text-white/60 text-sm px-6 py-3 hover:border-[#C8F135] hover:text-[#C8F135] transition-all duration-200"
+          >
+            Download CV
+            <span class="translate-x-0 group-hover:translate-x-1 transition-transform duration-200">↓</span>
+          </a>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</section>

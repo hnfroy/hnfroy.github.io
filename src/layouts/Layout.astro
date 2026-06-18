@@ -1,0 +1,468 @@
+---
+import "../styles/global.css";
+
+export interface Props {
+    title?: string;
+}
+const { title = "Hanif Royyan | UI/UX Product Designer" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{title}</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+            defer></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
+            defer></script>
+    </head>
+    <body class="bg-[#0A0A0A] text-white font-sans antialiased">
+        <canvas
+            id="cursor-canvas"
+            style="position:fixed;inset:0;pointer-events:none;z-index:9999;"
+        ></canvas>
+        <slot />
+        <script>
+            import { gsap } from "gsap";
+            import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+
+            // Daftarkan secara global ke window object agar bisa diakses komponen lain
+            gsap.registerPlugin(ScrollTrigger);
+            (window as any).gsap = gsap;
+            (window as any).ScrollTrigger = ScrollTrigger;
+
+            // ─── ABOUT SECTION ─────────────────────────────────
+            gsap.from(".about-photo-wrap", {
+                scrollTrigger: {
+                    trigger: ".about-photo-wrap",
+                    start: "top 85%",
+                },
+                x: -50,
+                opacity: 0,
+                duration: 0.9,
+                ease: "power3.out",
+            });
+
+            gsap.from(".about-name", {
+                scrollTrigger: { trigger: ".about-name", start: "top 88%" },
+                y: 30,
+                opacity: 0,
+                duration: 0.7,
+                ease: "power3.out",
+            });
+
+            gsap.utils.toArray(".about-para").forEach((el, i) => {
+                gsap.from(el as Element, {
+                    scrollTrigger: { trigger: el as Element, start: "top 90%" },
+                    y: 20,
+                    opacity: 0,
+                    duration: 0.6,
+                    delay: i * 0.15,
+                    ease: "power3.out",
+                });
+            });
+
+            gsap.from(".about-divider", {
+                scrollTrigger: { trigger: ".about-divider", start: "top 90%" },
+                scaleX: 0,
+                transformOrigin: "left",
+                duration: 0.8,
+                ease: "power3.out",
+            });
+
+            gsap.utils.toArray(".about-fact").forEach((el, i) => {
+                gsap.from(el as Element, {
+                    scrollTrigger: { trigger: el as Element, start: "top 92%" },
+                    y: 15,
+                    opacity: 0,
+                    duration: 0.5,
+                    delay: i * 0.1,
+                    ease: "power3.out",
+                });
+            });
+
+            gsap.from(".about-cta", {
+                scrollTrigger: { trigger: ".about-cta", start: "top 92%" },
+                y: 15,
+                opacity: 0,
+                duration: 0.5,
+                ease: "power3.out",
+            });
+        </script>
+        <script>
+            window.addEventListener("load", () => {
+                const canvas = document.getElementById(
+                    "cursor-canvas",
+                ) as HTMLCanvasElement;
+                const ctx = canvas.getContext("2d")!;
+
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                window.addEventListener("resize", () => {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                });
+
+                // ── CURSOR STATE ──────────────────────────────────
+                const cursor = { x: -200, y: -200 };
+                const dot = { x: -200, y: -200 }; // lagging dot
+                const circle = { x: -200, y: -200 }; // lagging outer circle
+                let moving = false;
+                let moveTimer: ReturnType<typeof setTimeout>;
+                let prevX = -200,
+                    prevY = -200;
+                let velocity = { x: 0, y: 0 };
+
+                window.addEventListener("mousemove", (e) => {
+                    prevX = cursor.x;
+                    prevY = cursor.y;
+                    cursor.x = e.clientX;
+                    cursor.y = e.clientY;
+                    velocity.x = cursor.x - prevX;
+                    velocity.y = cursor.y - prevY;
+                    moving = true;
+                    clearTimeout(moveTimer);
+                    moveTimer = setTimeout(() => {
+                        moving = false;
+                    }, 80);
+                });
+
+                // ── PARTICLES ────────────────────────────────────
+                interface Spark {
+                    x: number;
+                    y: number;
+                    vx: number;
+                    vy: number;
+                    life: number;
+                    maxLife: number;
+                    size: number;
+                    type: "spark" | "ember" | "trail";
+                    color: string;
+                }
+
+                const sparks: Spark[] = [];
+
+                const colors = [
+                    "#C8F135",
+                    "#d4f55a",
+                    "#e0f87a", // acid yellow
+                    "#ffffff",
+                    "#ffffcc", // white hot
+                    "#88ff44",
+                    "#aeff66", // green sparks
+                ];
+
+                function spawnSparks(
+                    x: number,
+                    y: number,
+                    vx: number,
+                    vy: number,
+                ) {
+                    const speed = Math.sqrt(vx * vx + vy * vy);
+                    if (speed < 1) return;
+
+                    // Jumlah partikel dikurangi agar tidak ramai
+                    const count = Math.min(Math.floor(speed * 0.2), 3);
+
+                    for (let i = 0; i < count; i++) {
+                        const angle =
+                            Math.atan2(vy, vx) + (Math.random() - 0.5) * 0.6;
+                        const spd = Math.random() * speed * 0.2 + 0.5;
+                        const type = Math.random() > 0.7 ? "ember" : "spark";
+
+                        sparks.push({
+                            x,
+                            y,
+                            vx:
+                                Math.cos(angle) * spd +
+                                (Math.random() - 0.5) * 1,
+                            vy:
+                                Math.sin(angle) * spd +
+                                (Math.random() - 0.5) * 1,
+                            life: 1,
+                            maxLife:
+                                type === "ember"
+                                    ? 0.4 + Math.random() * 0.3
+                                    : 0.2 + Math.random() * 0.2,
+                            size:
+                                type === "ember"
+                                    ? Math.random() * 1.2 + 0.5
+                                    : Math.random() * 0.8 + 0.2,
+                            type,
+                            color: colors[
+                                Math.floor(Math.random() * colors.length)
+                            ],
+                        });
+                    }
+
+                    // Trail particle
+                    sparks.push({
+                        x: x + (Math.random() - 0.5) * 2,
+                        y: y + (Math.random() - 0.5) * 2,
+                        vx: (Math.random() - 0.5) * 0.2,
+                        vy: (Math.random() - 0.5) * 0.2,
+                        life: 1,
+                        maxLife: 0.1 + Math.random() * 0.1,
+                        size: Math.random() * 1.5 + 0.5,
+                        type: "trail",
+                        color: "#C8F135",
+                    });
+                }
+
+                // ── RING CURSOR ───────────────────────────────────
+                interface Ring {
+                    x: number;
+                    y: number;
+                    r: number;
+                    maxR: number;
+                    life: number;
+                }
+                const rings: Ring[] = [];
+
+                function spawnRing(x: number, y: number) {
+                    rings.push({
+                        x,
+                        y,
+                        r: 2,
+                        maxR: 8 + Math.random() * 4,
+                        life: 1,
+                    });
+                }
+
+                let ringTimer = 0;
+
+                // ── DRAW ──────────────────────────────────────────
+                function draw() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                    // Lerp dot & circle toward cursor
+                    dot.x += (cursor.x - dot.x) * 0.15;
+                    dot.y += (cursor.y - dot.y) * 0.15;
+
+                    // Circle sedikit lebih cepat/lambat dari dot untuk efek dinamis
+                    circle.x += (cursor.x - circle.x) * 0.25;
+                    circle.y += (cursor.y - circle.y) * 0.25;
+
+                    // Spawn sparks if moving
+                    if (moving) {
+                        spawnSparks(dot.x, dot.y, velocity.x, velocity.y);
+                        ringTimer++;
+                        if (ringTimer % 15 === 0) spawnRing(dot.x, dot.y);
+                    }
+
+                    // Draw sparks
+                    for (let i = sparks.length - 1; i >= 0; i--) {
+                        const s = sparks[i];
+                        s.x += s.vx;
+                        s.y += s.vy;
+                        s.vy += 0.04;
+                        s.vx *= 0.95;
+                        s.life -= 1 / (s.maxLife * 60);
+
+                        if (s.life <= 0) {
+                            sparks.splice(i, 1);
+                            continue;
+                        }
+
+                        const alpha = s.life;
+                        ctx.save();
+                        ctx.globalAlpha = alpha;
+
+                        if (s.type === "trail") {
+                            const grad = ctx.createRadialGradient(
+                                s.x,
+                                s.y,
+                                0,
+                                s.x,
+                                s.y,
+                                s.size * 2,
+                            );
+                            grad.addColorStop(0, s.color);
+                            grad.addColorStop(1, "transparent");
+                            ctx.fillStyle = grad;
+                            ctx.beginPath();
+                            ctx.arc(s.x, s.y, s.size * 2, 0, Math.PI * 2);
+                            ctx.fill();
+                        } else if (s.type === "ember") {
+                            ctx.shadowBlur = 3;
+                            ctx.shadowColor = s.color;
+                            ctx.fillStyle = s.color;
+                            ctx.beginPath();
+                            ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+                            ctx.fill();
+                        } else {
+                            ctx.strokeStyle = s.color;
+                            ctx.lineWidth = s.size * 0.4;
+                            ctx.shadowBlur = 2;
+                            ctx.shadowColor = s.color;
+                            ctx.lineCap = "round";
+                            ctx.beginPath();
+                            ctx.moveTo(s.x, s.y);
+                            ctx.lineTo(s.x - s.vx * 2, s.y - s.vy * 2);
+                            ctx.stroke();
+                        }
+
+                        ctx.restore();
+                    }
+
+                    // Draw rings (efek tembakan/letupan)
+                    for (let i = rings.length - 1; i >= 0; i--) {
+                        const r = rings[i];
+                        r.r += (r.maxR - r.r) * 0.2;
+                        r.life -= 0.08;
+                        if (r.life <= 0) {
+                            rings.splice(i, 1);
+                            continue;
+                        }
+
+                        ctx.save();
+                        ctx.globalAlpha = r.life * 0.3;
+                        ctx.strokeStyle = "#C8F135";
+                        ctx.lineWidth = 0.5;
+                        ctx.shadowBlur = 2;
+                        ctx.shadowColor = "#C8F135";
+                        ctx.beginPath();
+                        ctx.arc(r.x, r.y, r.r, 0, Math.PI * 2);
+                        ctx.stroke();
+                        ctx.restore();
+                    }
+
+                    // ── DRAW MAIN CIRCLE (BARU) ──
+                    ctx.save();
+                    ctx.globalAlpha = 0.6;
+                    ctx.strokeStyle = "#C8F135";
+                    ctx.lineWidth = 1; // Garis pinggir tipis
+                    ctx.beginPath();
+                    // Radius lingkaran diset ke 14
+                    ctx.arc(circle.x, circle.y, 14, 0, Math.PI * 2);
+                    ctx.stroke();
+                    ctx.restore();
+
+                    // ── DRAW MAIN DOT ──
+                    ctx.save();
+                    ctx.globalAlpha = 0.9;
+                    ctx.shadowBlur = 6;
+                    ctx.shadowColor = "#C8F135";
+                    ctx.fillStyle = "#C8F135";
+                    ctx.beginPath();
+                    ctx.arc(dot.x, dot.y, 2, 0, Math.PI * 2);
+                    ctx.fill();
+                    // Inner white hot core
+                    ctx.shadowBlur = 2;
+                    ctx.fillStyle = "#ffffff";
+                    ctx.beginPath();
+                    ctx.arc(dot.x, dot.y, 0.8, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+
+                    requestAnimationFrame(draw);
+                }
+
+                draw();
+            });
+        </script>
+        <script>
+            const typingElements = document.querySelectorAll(".typing-text");
+
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            const el = entry.target as HTMLElement;
+                            // Reset dulu biar bisa replay kalau scroll ulang
+                            el.classList.remove("animate");
+                            void el.offsetWidth; // force reflow
+                            el.classList.add("animate");
+                            observer.unobserve(el); // trigger sekali saja
+                        }
+                    });
+                },
+                { threshold: 0.5 },
+            );
+
+            typingElements.forEach((el) => observer.observe(el));
+        </script>
+    </body>
+</html>
+
+<style is:global>
+    :root {
+        --accent: #c8f135;
+    }
+    body {
+        font-family: "Space Grotesk", sans-serif;
+    }
+    .font-mono {
+        font-family: "Space Mono", monospace;
+    }
+    ::selection {
+        background: #c8f135;
+        color: #0a0a0a;
+    }
+    ::-webkit-scrollbar {
+        width: 4px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #0a0a0a;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #c8f135;
+    }
+
+    /* Typing loop animation */
+    .typing-text {
+        overflow: hidden;
+        white-space: nowrap;
+        border-right: 2px solid #c8f135;
+        display: inline-block;
+        width: 0;
+    }
+
+    .typing-text.animate {
+        animation: typeLoop 6s steps(30, end) infinite;
+    }
+
+    @keyframes typeLoop {
+        0% {
+            width: 0;
+        }
+        40% {
+            width: 100%;
+        } /* buka selama ~2.4s */
+        60% {
+            width: 100%;
+        } /* diam sebentar di penuh */
+        90% {
+            width: 0;
+        } /* tutup */
+        100% {
+            width: 0;
+        } /* jeda sebelum ulang */
+    }
+
+    @keyframes cursorBlink {
+        0%,
+        100% {
+            border-color: #c8f135;
+        }
+        50% {
+            border-color: transparent;
+        }
+    }
+
+    .typing-text.animate {
+        animation:
+            typeLoop 6s steps(30, end) infinite,
+            cursorBlink 0.6s step-end infinite;
+    }
+</style>

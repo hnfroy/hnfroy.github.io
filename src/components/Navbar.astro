@@ -1,0 +1,166 @@
+---
+const links = ["Hero", "About", "Skills", "Experience", "Projects", "Contact"];
+---
+
+<!-- Top navbar -->
+<nav class="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-4 flex items-center justify-between border-b border-white/5 backdrop-blur-md bg-[#0A0A0A]/80">
+  <a href="/" class="flex items-center">
+    <img src="/logo-h.png" alt="Hanif Roy" class="h-9 w-auto object-contain" />
+  </a>
+
+  <div class="flex items-center gap-3">
+    <a href="/cv-hanif-royyan.pdf" download="CV-Hanif-Royyan.pdf"
+      class="group hidden md:flex items-center gap-1.5 text-xs font-mono text-white/40 hover:text-[#C8F135] transition-colors duration-200 border border-white/10 hover:border-[#C8F135]/30 px-4 py-2">
+      CV <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="fill-white/40 group-hover:fill-[#C8F135]" viewBox="0 0 256 256"><path d="M224,144v64a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V144a8,8,0,0,1,16,0v56H208V144a8,8,0,0,1,16,0Zm-101.66,5.66a8,8,0,0,0,11.32,0l40-40a8,8,0,0,0-11.32-11.32L136,124.69V32a8,8,0,0,0-16,0v92.69L93.66,98.34a8,8,0,0,0-11.32,11.32Z"></path></svg>
+    </a>
+    <a href="#contact"
+      class="text-xs font-mono border border-[#C8F135] text-[#C8F135] px-4 py-2 hover:bg-[#C8F135] hover:text-[#0A0A0A] transition-all duration-200">
+      Hire Me
+    </a>
+    <button id="menu-btn" aria-label="Toggle menu"
+      class="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1.5">
+      <span class="bar w-5 h-px bg-white/60 transition-all duration-300 origin-center"></span>
+      <span class="bar w-5 h-px bg-white/60 transition-all duration-300 origin-center"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Floating side nav (desktop only) -->
+<aside id="side-nav"
+  class="fixed left-6 md:left-10 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col gap-1 transition-opacity duration-300">
+  {links.map(link => (
+    
+    <a href={`#${link.toLowerCase()}`}
+      data-section={link.toLowerCase()}
+      class="side-link group flex items-center gap-3 py-1 w-fit"
+    >
+      <span class="side-line block h-px bg-white/20 transition-all duration-300 group-hover:bg-[#C8F135] group-hover:w-6 w-4"></span>
+      <span class="side-label font-mono text-xs text-white/20 tracking-widest uppercase transition-all duration-300 group-hover:text-white/60">
+        {link}
+      </span>
+    </a>
+  ))}
+</aside>
+
+<!-- Mobile Drawer -->
+<div id="mobile-menu"
+  class="fixed inset-0 z-40 bg-[#0A0A0A] flex flex-col justify-center px-8 md:hidden translate-x-full transition-transform duration-300 ease-in-out">
+  <ul class="space-y-2 mb-12">
+    {links.map(link => (
+      <li>
+        <a href={`#${link.toLowerCase()}`}
+          class="mobile-link block text-5xl font-bold text-white/20 hover:text-[#C8F135] transition-all duration-200 py-2"
+          data-close>
+          {link}
+        </a>
+      </li>
+    ))}
+  </ul>
+  <div class="flex flex-col gap-3">
+    <a href="/cv-hanif-royyan.pdf" download="CV-Hanif-Royyan.pdf"
+      class="flex items-center justify-center gap-2 border border-white/10 text-white/40 text-sm font-mono px-6 py-3 hover:border-[#C8F135]/30 hover:text-[#C8F135] transition-all duration-200"
+      data-close>
+      Download CV ↓
+    </a>
+    <a href="#contact"
+      class="flex items-center justify-center border border-[#C8F135] text-[#C8F135] text-sm font-mono px-6 py-3 hover:bg-[#C8F135] hover:text-[#0A0A0A] transition-all duration-200"
+      data-close>
+      Hire Me
+    </a>
+  </div>
+  <p class="absolute bottom-8 left-8 font-mono text-white/15 text-xs">hnfroy@gmail.com</p>
+</div>
+
+<script>
+  // ── MOBILE DRAWER ──────────────────────────────────
+  const btn = document.getElementById('menu-btn')!;
+  const mobileMenu = document.getElementById('mobile-menu')!;
+  const bars = document.querySelectorAll('.bar') as NodeListOf<HTMLElement>;
+  let open = false;
+
+  function setOpen(val: boolean) {
+    open = val;
+    if (open) {
+      mobileMenu.classList.remove('translate-x-full');
+      document.body.style.overflow = 'hidden';
+      bars[0].style.cssText = 'transform: translateY(4px) rotate(45deg); background: #C8F135;';
+      bars[1].style.cssText = 'transform: translateY(-4px) rotate(-45deg); background: #C8F135;';
+      document.querySelectorAll<HTMLElement>('.mobile-link').forEach((el, i) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateX(-24px)';
+        el.style.transition = 'none';
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            el.style.transition = 'opacity 0.35s ease, transform 0.35s ease, color 0.2s ease';
+            el.style.opacity = '1';
+            el.style.transform = 'translateX(0)';
+          }, 150 + i * 70);
+        });
+      });
+    } else {
+      mobileMenu.classList.add('translate-x-full');
+      document.body.style.overflow = '';
+      bars[0].style.cssText = '';
+      bars[1].style.cssText = '';
+    }
+  }
+
+  btn.addEventListener('click', () => setOpen(!open));
+  document.querySelectorAll('[data-close]').forEach(el => {
+    el.addEventListener('click', () => setOpen(false));
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+
+  // ── SCROLL SPY ─────────────────────────────────────
+  const sideLinks = document.querySelectorAll('.side-link') as NodeListOf<HTMLElement>;
+  const sideNav = document.getElementById('side-nav')!;
+
+  sideNav.style.opacity = '1';
+  sideNav.style.pointerEvents = 'auto';
+
+  function setActive(id: string) {
+    sideLinks.forEach(link => {
+      const isActive = link.dataset.section === id;
+      const line = link.querySelector('.side-line') as HTMLElement;
+      const label = link.querySelector('.side-label') as HTMLElement;
+      if (isActive) {
+        line.style.cssText = 'width: 24px; background: #C8F135;';
+        label.style.cssText = 'color: #C8F135; font-weight: 700; letter-spacing: 0.2em;';
+      } else {
+        line.style.cssText = '';
+        label.style.cssText = '';
+      }
+    });
+  }
+
+  const sections = ['hero', 'about', 'skills', 'experience', 'projects', 'contact']
+    .map(id => document.getElementById(id))
+    .filter(Boolean) as HTMLElement[];
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) setActive(entry.target.id);
+    });
+  }, {
+    rootMargin: '-40% 0px -55% 0px',
+    threshold: 0,
+  });
+
+  sections.forEach(s => observer.observe(s));
+
+  setActive('hero');
+</script>
+
+<style>
+  .side-link .side-line {
+    width: 16px;
+    background: rgba(255,255,255,0.2);
+    transition: width 0.3s ease, background 0.3s ease;
+  }
+  .side-link .side-label {
+    color: rgba(255,255,255,0.2);
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    transition: color 0.3s ease, font-weight 0.3s ease, letter-spacing 0.3s ease;
+  }
+</style>
